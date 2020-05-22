@@ -1,0 +1,38 @@
+/**
+ * ----------------------------------------------------------------------------
+ * slideshow
+ * ----------------------------------------------------------------------------
+ */
+.parl_style {
+  .vertical--top {
+    top: 120px;
+    @include transform(translateY(-40px));
+  }
+  .vertical--center {
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+  .vertical--bottom {
+    top: auto;
+    bottom: 40px;
+    @include transform(translateY(-40px));
+  }
+
+  .align--left {
+    left: 0;
+    text-align: left;
+  }
+  .align--center {
+    left: 50%;
+    text-align: center;
+  }
+  .align--right {
+    text-align: right;
+    left: auto;
+    right: 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}

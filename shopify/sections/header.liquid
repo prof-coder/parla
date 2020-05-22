@@ -1,0 +1,308 @@
+<!-- sections/header.liquid -->
+
+{%- assign _section = section.settings -%}
+{%- assign _blocks = section.blocks -%}
+
+{%- case _section.align_logo -%}
+  {%- when 'left' -%}
+    {%- assign logo_class = 'is-3 header_section__item_left' -%}
+    {%- assign left_menu_class = 'is-6' -%}
+    {%- assign right_menu_class = 'is-3 header_section__item_right' -%}
+  {%- when 'center' -%}
+    {%- assign logo_class = 'is-2 header_section__item_center' -%}
+    {%- assign left_menu_class = 'is-5 header_section__item_left' -%}
+    {%- assign right_menu_class = 'is-5 header_section__item_right' -%}
+{%- endcase -%}
+
+<div class="header_section">
+  {% if _section.message %}
+    {%- if _section.announcement_bar_home_page_only == false or template.name == 'index' -%}
+      <div class="header_section__free_shipping">
+        <div class="container is-fluid general_container">
+          {%- if _section.message_link != blank -%}
+            <a href="{{ _section.message_link }}">
+              {{ _section.message_text | escape }}
+            </a>
+            <!--span></span-->
+          {%- else -%}
+            <p class="has-text-centered">
+              {{ _section.message_text | escape }}
+              <!--span></span-->
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {% endif %}
+  <header class="{% if _section.message %}top-separate{% endif%}">
+    <div class="container is-fluid general_container">
+      <div class="header_section__container header_section__tablet">
+        <div class="header_section__tablet__left">
+          <div class="center--cover">
+            <div class="center--inner">
+              <a href="#nav" class="btn-menu visible-sm-block visible-xs-block js-btn-mobile-expand">
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {%- include 'header-logo' with max_width: _section.logo_max_width -%}
+        <div class="header_section__tablet__right">
+          <div class="center--cover">
+            <div class="center--inner">
+              <a class="text_uppercase header_cart_icon" data-cart-toggle href="#">
+                <div class="center--cover">
+                  <div class="center--inner">
+                    <img src="{{ 'cart.png' | asset_url }}"/>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns header_section__container header_section__desktop">
+        {%- case _section.align_logo -%}
+          {%- when 'left' -%}
+            <!-- Logo -->
+              <div class="column {{ logo_class }}">
+                <div class="center--cover">
+                  <div class="center--inner">
+                    {%- include 'header-logo' with max_width: _section.logo_max_width -%}
+                  </div>
+                </div>
+              </div>
+            <!-- Menu -->
+              <div class="column {{ left_menu_class }}">
+                {%- include 'header-nav' -%}
+              </div>
+            <!-- Right Menu -->
+              <div class="column {{ right_menu_class }}">
+                {%- include 'header-nav-right' with class: right_menu_class -%}
+              </div>
+          {%- when 'center' -%}
+            <!-- Menu -->
+              <div class="column {{ left_menu_class }}">
+                {%- include 'header-nav' -%}
+              </div>
+            <!-- Logo -->
+              <div class="column {{ logo_class }}">
+                <div class="center--cover">
+                  <div class="center--inner">
+                    {%- include 'header-logo' with max_width: _section.logo_max_width -%}
+                  </div>
+                </div>
+              </div>
+            <!-- Right Menu -->
+              <div class="column {{ right_menu_class }}">
+                {%- include 'header-nav-right' -%}
+              </div>
+        {%- endcase -%}
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav inactive" id="nav">
+    <div class="mobile-nav__inner">
+      <form class="header_section__search_bar" method="get" action="/search">
+        <div class="search_bar__inner">
+          <input type="text" name="q" class="input" placeholder="Search for ...">
+          <span>{%- include 'icon' with type: 'search' -%}</span>
+        </div>
+      </form>
+      {%- include 'header-nav' -%}
+    </div>
+  </nav>
+  <form class="header_section__desktop header_section__search_bar" method="get" action="/search">
+    <div class="container is-fluid general_container">
+      <div class="search_bar__inner">
+        <input type="text" name="q" class="input" placeholder="Search for ...">
+        <a href="#close">╳</a>
+        <span>{%- include 'icon' with type: 'search' -%}</span>
+      </div>
+      <span>Hit 'Enter' to search</span>
+    </div>
+  </form>
+  
+  <div class="header_section__space {% if _section.header_free_shipping_active %}top-separation{% endif%}"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "align_logo",
+        "label": "Logo alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": "Custom logo width",
+        "min": 50,
+        "max": 250,
+        "step": 5,
+        "unit": "px",
+        "default": 165
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "message",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show on home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "message_text",
+        "label": "Text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "message_link",
+        "label": "Enlace",
+        "info": "Optional"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "nav-dropdown",
+        "name": "Nav Dropdown",
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_handle",
+            "label": "Link handle"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "radio",
+            "id": "align_image",
+            "label": "Image alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "right"
+          },
+          {
+            "type": "link_list",
+            "id": "nav_1",
+            "label": "Col 1 nav 1"
+          },
+          {
+            "type": "link_list",
+            "id": "nav_2",
+            "label": "Col 2 nav 1"
+          },
+          {
+            "type": "link_list",
+            "id": "nav_3",
+            "label": "Col 1 nav 2"
+          },
+          {
+            "type": "link_list",
+            "id": "nav_4",
+            "label": "Col 2 nav 2"
+          },
+          {
+            "type": "url",
+            "id": "box_link",
+            "label": "Box link"
+          },
+          {
+            "type": "image_picker",
+            "id": "box_image",
+            "label": "Box image"
+          },
+          {
+            "type": "textarea",
+            "id": "box_title",
+            "label": "Box title"
+          },
+          {
+            "type": "textarea",
+            "id": "box_content",
+            "label": "Box Content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_youtube_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}

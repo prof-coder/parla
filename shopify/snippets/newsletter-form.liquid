@@ -1,0 +1,20 @@
+<!-- snippets/newsletter-form.liquid -->
+
+<form class="styled newsletter_form" onsubmit="false">
+  <fieldset class="text">
+    <div class="form_input has-arrow">
+      <button type="submit" class="form_input__arrow" style="background-image: url({{ 'right.svg' | asset_url }})"></button>  
+      <input type="text" name="" class="email" placeholder="{{ _block.newsletter_placeholder }}">
+    </div>
+    <div class="form_messages">
+      <p class="form_messages__error" style="display: none">
+        <span style="background-image: url({{ 'info_red.svg' | asset_url }})"></span> 
+        {{ settings.newsletter_error }}
+      </p>
+      <p class="form_messages__success" style="display: none">
+        <span style="background-image: url({{ 'check_green.svg' | asset_url }})"></span> 
+        {{ settings.newsletter_success }}
+      </p>
+    </div>
+  </fieldset>
+</form>

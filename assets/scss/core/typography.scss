@@ -1,0 +1,53 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-body;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+  font-size: 1.6rem;
+  color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+}
+
+a:focus {
+  color: inherit;
+}
+
+h2 {
+	font-size: 4rem;
+	line-height: 1.2;
+	font-weight: 600;
+
+  @include av-mq('pocket') {
+    font-size: 3rem;
+  }
+}
+
+p {
+	font-size: 16px;
+	line-height: 1.7;
+  letter-spacing: 0;
+
+  @include av-mq('pocket') {
+    font-size: 1.65rem;
+  }
+}

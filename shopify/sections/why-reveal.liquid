@@ -1,0 +1,73 @@
+{%- assign _section = section.settings -%}
+
+<section class="image-text why-reveal">
+  <div class="image-text--inner{% if _section.image_alignment == 'right' %} image-text-reverse{% endif %}">
+    <div class="why-reveal--background visible-sm-block visible-xs-block">
+    </div>
+    <div class="image-text-image">
+      <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: _section.image %}" style="padding-bottom: calc(1 / {{ _section.image.aspect_ratio }} * 100% ); background-image: url('{{ _section.image | img_url: '300x' }}');"></div>
+    </div>
+    <div class="image-text-content">
+      <div class="image-text-content--inner">
+        {% if _section.title != blank %}
+          <h2>{{ _section.title | escape }}</h2>
+        {% endif %}
+
+        {% if _section.sub_title != blank %}
+          <h5>{{ _section.sub_title }}</h5>
+        {% endif %}
+
+        <div class="image-text-detail-wrapper">
+          {% if _section.text != blank %}
+            <div class="image-text-detail">{{ _section.text | newline_to_br }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Our Reveal",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Packing"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_title",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}

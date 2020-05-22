@@ -1,0 +1,412 @@
+.image-with-text {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+    @include av-mq('mobile') {
+      flex-flow: row wrap;
+    }
+
+    &.img-text-bgimg {
+      height: 40vw;
+
+      @include av-mq('desk') {
+        max-height: 550px;
+      }
+
+      @include av-mq('pocket') {
+        height: 45vw;
+      }
+
+      @include av-mq('mobile') {
+        height: 55vw;
+      }
+
+      @include av-mq('mobile-s') {
+        height: 70vw;
+      }
+
+      .image-with-text__image {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        background: #000;
+
+        .bgimg {
+          height: 100%;
+          opacity: 0.75;
+        }
+      }
+
+      .image-with-text__text {
+        position: relative;
+        color: #fff;
+
+
+        h2, p {
+          padding: 5px 0;
+        }       
+      }
+    }
+  }
+
+  .image-with-text__image {
+    flex: 0 1 60%;
+
+    @include av-mq('pocket') {
+      flex: 0 1 50%;
+    }
+
+    @include av-mq('mobile') {
+      flex: 0 1 100%;
+      order: 0;
+    }
+
+    .bgimg {
+      height: 40vw;
+
+      @include av-mq('desk') {
+        max-height: 550px;
+      }
+
+      @include av-mq('pocket') {
+        height: 45vw;
+      }
+
+      @include av-mq('mobile') {
+        height: 55vw;
+      }
+
+      @include av-mq('mobile-s') {
+        height: 70vw;
+      }
+    }
+  }
+
+  .image-with-text__text {
+    flex: 1 1 40%;
+    display: flex;
+
+    @include av-mq('pocket') {
+      flex: 1 1 50%;
+    }
+
+    @include av-mq('mobile') {
+      margin-top: 2rem;
+      flex: 1 1 100%;
+      order: 1;
+      text-align: center !important;
+      margin-top: 0;
+      padding: 40px 0;
+    }
+
+    & > div {
+      flex: 1;
+      align-self: center;
+      margin: auto;
+      max-width: 80%;
+      @include av-mq('widescreen') {
+        max-width: 645px;
+      }
+      @include av-mq('mobile') {
+        max-width: none;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  h2, p {
+    padding: 10px 0;
+
+    @include av-mq('pocket') {
+      padding: 5px 0;
+    }
+  }
+
+  h2 {
+    font-size: 55px;
+    @include av-mq('widescreen') {
+      font-size: 75px;
+    }
+  }
+
+  .btn {
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #3b73cd;
+    color: #FFF;
+    width: 160px;
+    display: inline-block;
+    padding: 17px 5px;
+    border-radius: 4px;
+    font-weight: normal;
+    letter-spacing: 0;
+    margin-top: 30px;
+
+    &.disabled {
+      border: none;
+      opacity: 0.6;
+      background: #3e3e3e;
+    }
+
+    @include av-mq('widescreen') {
+      width: 175px;
+      padding: 20px 10px;
+      font-size: 14px;
+    }
+    @include av-mq('pocket') {
+      margin-top: 25px;
+    }
+  }
+
+  @include av-mq('mobile') {
+    h2 {
+      font-size: 35px;
+      letter-spacing: 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .btn {
+      margin-top: 15px;
+    }
+  }
+
+  &.is-full {
+
+    .image-with-text__image {
+      flex: 0 1 50%;
+
+      @include av-mq('mobile') {
+        flex: 0 1 100%;
+      }
+    }
+
+    .image-with-text__text {
+      flex: 1 1 50%;
+
+      @include av-mq('mobile') {
+        flex: 1 1 100%;
+      }
+    }
+
+    .container.img-text-bgimg {
+      @include av-mq('desk') {
+        max-height: 600px;
+      }
+
+      .image-with-text__image {
+        .bgimg {
+          padding-top: 0;
+
+          @include av-mq('desk') {
+            max-height: 600px;
+          }
+        }
+      }
+    }
+  }
+
+  &-thumbnails {
+    .image-with-text__image {
+      flex: 0 1 40%;
+
+      @include av-mq('mobile-s') {
+        flex: 0 1 100%;
+      }
+
+      .bgimg {
+        height: 55vw;
+
+        @include av-mq('desk') {
+          max-height: 630px;
+        }
+
+        @include av-mq('tablet-and-up') {
+          height: 50vw;
+        }
+
+        @include av-mq('desk') {
+          height: 45vw;
+        }
+
+        @include av-mq('pocket') {
+          height: 60vw;
+        }
+
+        @include av-mq('mobile') {
+          height: 72vw;
+        }
+
+        @include av-mq('mobile-s') {
+          height: 40vw;
+        }
+      }
+    }
+
+    .image-with-text__mixed {
+      flex: 1 1 60%;
+      display: flex;
+      flex-flow: row wrap;
+
+      @include av-mq('mobile-s') {
+        flex: 1 1 100%;
+        margin-top: 2rem;
+      }
+    }
+
+    .image-with-text__text {
+      flex: 1 1 100%;
+      height: 50%;
+
+      @include av-mq('mobile') {
+        order: 0;
+        margin-top: 0;
+      }
+
+      @include av-mq('mobile-s') {
+        order: 1;
+        margin-top: 2rem;
+        height: auto;
+      }
+
+      & > div {
+        margin-right: 0;
+        max-width: 85%;
+
+        @include av-mq('mobile-s') {
+          max-width: 80%;
+          margin: auto;
+        }
+      }
+    }
+
+    .image-with-text__mixed_images {
+      width: 85%;
+      display: flex;
+      align-self: end;
+      justify-content: space-between;
+      margin-left: 15%;
+
+      @include av-mq('mobile-s') {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .item {
+        width: 45%;
+
+        @include av-mq('mobile-s') {
+          width: 47.5%;
+        }
+
+        .bgimg {
+          width: 100%;
+          padding-top: 100%;
+
+          @include av-mq('mobile-s') {
+            padding-top: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  &-albums {
+    .container {
+      justify-content: space-between;
+    }
+
+    .image-with-text-albums_mixed {
+      width: 75%;
+      position: relative;
+      height: 40vw;
+      display: flex;
+
+      @include av-mq('tablet-and-up') {
+        height: 40vw;
+      }
+
+      @include av-mq('desk') {
+        height: 500px;
+        max-height: 500px;
+      }
+
+      @include av-mq('pocket') {
+        height: 45vw;
+      }
+
+      @include av-mq('mobile-s') {
+        width: 100%;
+        height: 70vw;
+      }
+
+      .image-with-text__image {
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+        right: 0;
+        width: 70%;
+        background: #fff;
+
+        @include av-mq('mobile') {
+          width: 100%;
+          background: #000;
+        }
+
+        .bgimg {
+          opacity: 0.75;
+          height: 100%;
+
+          @include av-mq('desk') {
+            max-height: 500px;
+          }
+        }
+      }
+
+      .image-with-text__text {
+        position: relative;
+
+        @include av-mq('mobile') {
+          margin-top: 0;
+          color: #fff;
+        }
+
+        & > div {
+          max-width: 45%;
+          margin-left: 0;
+
+          @include av-mq('pocket') {
+            max-width: 60%;
+          }
+
+          @include av-mq('mobile') {
+            max-width: 90%;
+            margin: auto;
+          }
+
+          @include av-mq('mobile-s') {
+            max-width: 80%;
+          }
+        }
+      }
+    }
+
+    .image-with-text-albums_small {
+      width: calc(25% - 22px);
+
+      @include av-mq('mobile-s') {
+        display: none;
+      }
+    }
+
+    .bgimg {
+      height: 100%;
+    }
+  }
+}

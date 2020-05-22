@@ -1,0 +1,35 @@
+.custom-placeholder {
+	&__text {
+		background-color: #e6e6e9;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40vw;
+
+		@include av-mq('desk') {
+			max-height: 600px;
+		}
+
+		@include av-mq('mobile') {
+			height: 50vw;
+		}
+
+		@include av-mq('mobile-s') {
+			height: 80vw;
+		}
+
+		& > div {
+			width: 50%;
+			max-width: 600px;
+			margin: auto;
+
+			@include av-mq('mobile') {
+				width: 80%;
+			}
+
+			h2, p {
+				padding: 10px 0;
+			}
+		}
+	}
+}

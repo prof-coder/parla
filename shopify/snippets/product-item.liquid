@@ -1,0 +1,27 @@
+{%- assign _active_variant = _product.selected_or_first_available_variant -%}
+<div class="product-item">
+  {%- if _product.images.size > 0 -%}
+    <div class="product-item--image">
+      <img 
+        class="lazyload"
+        data-srcset="{% include 'responsive-bg-image', image: _product.images[0] %}"
+        data-sizes="auto"
+        src="{{ _product.images[0] | img_url: '100x' }}" 
+      />
+    </div>
+  {%- endif -%}
+
+  <div class="product-item--content">
+    <div class="product-item--title">{{ _product.title }}</div>
+    <div class="product-item--price">{{ _product.price | money }} {{ 'products.product.regular_mode_price_title' | t }}</div>
+    {%- if _active_variant.available -%}
+      <a class="product-item--button js-add-to-cart" href="#" data-id="{{ _active_variant.id }}">
+        {{ "products.product.item_add_button" | t }}
+      </a>
+    {%- else -%}
+      <a href='#' class='BIS_trigger product-item--button disabled' data-product-data='{{ _product | json | escape }}'>
+        {{ "products.product.item_out_stock" | t }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>

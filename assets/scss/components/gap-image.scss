@@ -1,0 +1,41 @@
+.gap_image {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.image-with-text {
+  .gap_image {
+    position: absolute;
+    width: 13%;
+    right: auto;
+    left: calc(50% - 1.1%);
+    bottom: 10px;
+    @include av-mq('widescreen') {
+      width: 16%;
+      left: calc(50% - 1.4%);
+    }
+    @include av-mq('mobile') {
+      top: calc(100vw - 140px);
+      width: 150px;
+      right: auto;
+      left: 10px;
+      bottom: auto;
+    }
+  }
+  &.image-with-video {
+    .gap_image {
+      bottom: 50px;
+      width: 96px;
+      right: calc(50% - 30px);
+      left: auto;
+      @include av-mq('mobile') {
+        width: 60px;
+        top: 37vw;
+        bottom: auto;
+        right: 10px;
+      }
+    }
+  }
+}

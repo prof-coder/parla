@@ -1,0 +1,41 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Pagination
+ * ----------------------------------------------------------------------------
+ */
+
+.pagination, .pagination-list{
+  display: block;
+}
+
+.pagination{
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 20px 0;
+  span{
+    color: $gray-dark;
+    text-align: center;
+    display: inline-block;
+    // background: $gray-light;
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+    a{
+      padding: 10px;
+      color: $gray-dark;
+    }
+    &.current{
+      padding: 10px;
+      text-decoration: underline;
+      // color: #FFF;
+      // background: $primary-color;
+    }
+    &.prev{
+      margin-right: 10px;
+      // float: left;
+    }
+    &.next{
+      margin-left: 10px;
+      // float: right;
+    }
+  }
+}

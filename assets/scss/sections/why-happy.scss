@@ -1,0 +1,113 @@
+.image-text.why-happy-after {
+  padding: 0 25px;
+  .image-text--inner {
+    padding: 50px 0;
+    position: relative;
+  }
+  .image-text-image {
+    width: 35%;
+  }
+  .image-text-content {
+    width: 65%;
+  }
+  .image-text-content--inner {
+    max-width: none;
+    text-align: left;
+    h2 {
+      font-size: 50px;
+      letter-spacing: 0;
+      margin-bottom: 20px;
+    }
+  }
+  .image-text-detail-wrapper {
+    display: flex;
+  }
+
+  .image-text-detail {
+    width: 50%;
+    padding: 0 15px;
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 0;
+  }
+
+  .why-after--dot {
+    position: absolute;
+    top: 50px;
+    right: 150px;
+    width: 1.5%;
+    img {
+      width: 100%;
+    }
+  }
+
+  /* Wide Screen */
+
+  @include av-mq('widescreen') {
+    .image-text--inner {
+      padding: 100px 0;
+    }
+    .image-text-content--inner {
+      h2 {
+        font-size: 65px;
+      }
+    }
+    .image-text-detail {
+      font-size: 16px;
+    }
+  }
+
+  /* Tablet */
+
+  @include av-mq('tablet') {
+    .image-text--inner {
+      display: block;
+    }
+    .image-text-image {
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    .image-text-content {
+      width: 100%;
+    }
+    .image-text-content--inner {
+      h2 {
+        text-align: center;    
+      }
+    }
+
+  }
+  /* Tablet */
+
+  @include av-mq('mobile') {
+    padding: 0 25px 0 15px;
+    .image-text-image {
+      width: 100%;
+    }
+    .image-text-content {
+      width: 100%;
+      padding-top: 25px;
+      border-bottom: none;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+    .image-text-content--inner {
+      font-size: 25px;
+      margin-bottom: 20px;
+      h2 {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+    }
+    .image-text-detail-wrapper {
+      display: block;
+    }
+    .image-text-detail {
+      width: 100%;
+      padding: 0;
+      line-height: 2;
+    }
+  }
+}

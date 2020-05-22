@@ -1,0 +1,80 @@
+{%- assign settings = section.settings -%}
+
+<section class="image-text product-what">
+
+  <div class="image-text--inner{% if settings.image_alignment == 'right' %} image-text-reverse{% endif %}">
+    <div class="image-text-image">
+      <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: settings.image %}" style="padding-bottom: calc(1 / {{ settings.image.aspect_ratio }} * 100% ); background-image: url('{{ settings.image | img_url: '300x' }}');"></div>
+      {%- if settings.gap_image != blank -%}
+        <div class="gap_image">
+          <img src="{{ settings.gap_image | img_url: 'master' }}" />
+        </div>
+      {%- endif -%}
+    </div>
+    
+    <div class="image-text-content">
+      <div class="image-text-content--inner">
+        {% if settings.title != blank %}
+          <h2>{{ settings.title | escape | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if settings.sub_title != blank %}
+          <h5>{{ settings.sub_title }}</h5>
+        {% endif %}
+
+        {% if settings.text != blank %}
+          <p>{{ settings.text | newline_to_br }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product What",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image alignment",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Gap Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "gap_image",
+        "label": "Gap Image"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,84 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- comment -%} Product Images {%- endcomment -%}
+{%- capture product_images -%}
+  {%- for _product_image in product.images -%}
+    <div class="product-image-item" data-index="{{ forloop.index0 }}">
+      <img 
+        class="lazyload full-width"
+        src="{{ _product_image | img_url: '100x' }}" 
+        data-src="{{ _product_image | img_url: '100x' }}" 
+        data-srcset="{% include 'responsive-bg-image', image: _product_image %}"
+        data-sizes="auto"
+      />
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+<section class="product product-container">
+  <div class="product-wrapper">
+    <div class="product-images">
+      <div class="product-images--inner">
+        <div class="product-nav-thumbs">
+          {{ product_images }}
+        </div>
+        <div class="product-main-images">
+          {{ product_images }}
+        </div>
+      </div>
+    </div>
+    <div class="product-info-wrapper">
+      <h1 class="product-title">{{ product.title }}</h1>
+      <div class="product-description hidden-xs">
+        {{ product.description }}
+      </div>
+      <form class="product-form js-submit-form">
+        <input type="hidden" name="id"
+          value="{{ current_variant.metafields.subscriptions.discount_variant_id }}" 
+        >
+        <input type="hidden" name="variant_id"
+          value="{{ current_variant.id }}" 
+        >
+        <input type="hidden" name="subscription_id"
+          value="233290" 
+        >
+        
+        <div class="product-form--inner">
+          <div class="product-form-subscription">
+            <div class="product-form--title">
+              {{ 'products.product.subscribe_mode_title' | t }}
+              <p class="product-form--sub-title">(Four-months supply <br> - Save 32%)</p>
+            </div>
+            <div class="product-form--price">
+              <i>{{ product.price | times: 4 | money }}</i> {{ 1892 | money }}
+            </div>
+            <button type="button" class="btn product-form--button js-form-cart" data-count="4" data-unit="Months" data-type="subscription">
+              {{ 'products.product.subscribe' | t }}
+            </button>
+          </div>
+          <div class="product-form--gap">
+            <span>OR</span>
+          </div>
+          <div class="product-form-one-time">
+            <div class="product-form--title">
+              Buy one-month <br> supply
+            </div>
+            <div class="product-form--price">
+              {{ product.price | money }}
+            </div>
+            {%- if current_variant.available -%}
+              <button type="button" class="btn product-form--button js-form-cart">
+                {{ 'products.product.add_to_cart' | t }}
+              </button>
+            {%- else -%}
+              <button type="button" class="btn product-form--button js-form-cart disabled">
+                {{ 'products.product.out_of_stock' | t }}
+              </button>
+            {%- endif -%}
+          </div>
+        </div>
+      </form>
+      <div class="product-description visible-xs-block">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+</section>

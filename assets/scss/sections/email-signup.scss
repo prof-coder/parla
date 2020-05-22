@@ -1,0 +1,122 @@
+.email-signup {
+  position: relative;
+}
+.email-signup--inner {
+  height: 0;
+  background-size: cover;
+  position: relative;
+}
+
+.email-signup--form {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  left: 50%;
+  color: #fff;
+  width: 100%;
+}
+.signup-form--title {
+  font-size: 44px;
+}
+.signup-form--form {
+  margin-top: 25px;
+  width: 440px;
+  .form-group {
+    position: relative;
+    input {
+      width: 100%;
+      border: 1px solid #ffffff;
+      background: transparent;
+      padding: 15px 30px;
+      border-radius: 3px;
+      color: #fff;
+      font-family: $font-body;
+      letter-spacing: 0.02em;
+      font-weight: normal;
+      font-size: 14px;
+      &::placeholder {
+        font-family: $font-body;
+        color: #d4d8dc;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+    button {
+      position: absolute;
+      right: 10px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: none;
+      color: #2b84d5;
+      top: 7px;
+      padding-top: 4px;
+      transition: 0.3s all;
+      &:hover {
+        transform: scale(1.1);
+      }
+      &:focus {
+        outline: 0;
+      }
+      svg {
+        width: 20px;
+      }
+    }
+  }
+}
+
+@include av-mq('widescreen') {
+  .signup-form--title {
+    font-size: 60px;
+  }
+  .signup-form--form {
+    width: 590px;
+    .form-group {
+      input {
+        padding: 23px 30px;
+        font-size: 18px;
+      }
+      button {
+        width: 45px;
+        height: 45px;
+        top: 12px;
+      }
+    }
+  }
+}
+@include av-mq('mobile') {
+  .email-signup--form {
+    position: relative;
+    top: auto;
+    left: auto;
+    color: #000;
+    transform: none;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .email-signup--inner {
+    padding-bottom: 55% !important;
+  }
+  .signup-form--title {
+    font-size: 30px;
+  }
+  .signup-form--form {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    .form-group {
+      margin-top: 15px;
+      input {
+        border-color: #000;
+        &::placeholder {
+          color: #7e7e7e;
+        }
+      }
+      button  {
+        background: #000;
+        color: #FFF;
+      }
+    }
+  }
+}

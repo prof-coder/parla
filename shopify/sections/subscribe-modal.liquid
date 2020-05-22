@@ -1,0 +1,208 @@
+<!-- sections/subscribe-modal.liquid -->
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - INput Placeholder: placeholder text of the email input
+{%- endcomment -%}
+
+{%- assign settings = section.settings -%}
+
+<section class="section subscribe-modal closed">
+  <a class="section__overlay__close section__overlay__close--subscribe"></a>
+
+  <div>
+    <div class="subscribe-modal__image">
+      <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: settings.image %}"></div>
+    </div>
+
+    <div class="subscribe-modal__form">
+      <div>
+        {% if settings.title != blank %}
+          <h2>{{ settings.title | escape }}</h2>
+        {% endif %}
+
+        {% if settings.text != blank %}
+          <p>{{ settings.text }}</p>
+        {% endif %}
+
+        {% if settings.klaviyo_key != blank and settings.klaviyo_list_id != blank %}
+
+          <form action="//manage.kmail-lists.com/subscriptions/subscribe" {% if settings.ajax_post %}data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe"{% endif %} method="GET" novalidate="novalidate" id="subscribe-email_signup" class="form-subscribe" autocomplete="off">
+            <input type="hidden" name="g" value="{{ settings.klaviyo_list_id }}">
+            <input type="hidden" name="$list_fields" value="$consent">
+
+            <label for="k_id_email" style="display:none;"></label>
+            <input type="email" id="k_id_email" name="email" value="" class="input" placeholder="{{ settings.placeholder }}" />
+
+            <input type="submit" value="{{ settings.button_label }}" class="btn button is-link btn--blue" />
+
+            <div class="klaviyo_messages">
+              <div class="success_message notification" style="display:none;"></div>
+              <div class="error_message notification" style="display:none;"></div>
+            </div>
+          </form>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% if settings.klaviyo_key != blank %}
+<!-- BEGIN KLAVIYO SIGNUP FORM CODE -->
+<script type ="text/javascript"> 
+  var __klKey = __klKey || '{{ settings.klaviyo_key }}';
+    (function() {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//static.klaviyo.com/forms/js/client.js';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- END KLAVIYO SIGNUP FORM CODE -->
+{% endif %}
+
+<script type="text/javascript">
+  window.cookie_expiration_time_subscribe = {{ settings.cookie_expiration_time }};
+</script>
+
+{% javascript %}
+  var _c_subscribe_closed = getCookie('subscribe_closed');
+
+  if(_c_subscribe_closed == null  ){
+    var sectionSubscribeModal = document.getElementsByClassName("subscribe-modal closed");
+
+    var i;
+    for (i = 0; i < sectionSubscribeModal.length; i++) {
+      sectionSubscribeModal[i].className = "section subscribe-modal";
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches('.section__overlay__close--subscribe')) return;
+
+    // Don't follow the link
+    event.preventDefault();
+
+    var sectionSubscribeModal = document.getElementsByClassName("section subscribe-modal");
+
+    var i;
+    for (i = 0; i < sectionSubscribeModal.length; i++) {
+      sectionSubscribeModal[i].className = "section subscribe-modal closed";
+    }
+
+    setCookie('subscribe_closed', true, window.cookie_expiration_time_subscribe);
+  }, false);
+
+  function setCookie(name,value,days) {
+      var expires = "";
+      if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days*24*60*60*1000));
+          expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  }
+  function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+  }
+  function eraseCookie(name) {
+      document.cookie = name+'=; Max-Age=-99999999;';
+  }
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Subscribe Email Modal",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "ajax_post",
+        "default": true,
+        "label": "Ajax Post"
+      },
+      {
+        "type": "range",
+        "id": "cookie_expiration_time",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "unit": "day",
+        "label": "Set Cookie Expiration time",
+        "default": 7
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Subscribe to our newsletter!"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum accumsan rhoncus lectus eu tempus."
+      },
+      {
+        "type": "header",
+        "content": "Klaviyo Signup Form"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_key",
+        "label": "Klaviyo Key",
+        "info": "Please, use Klaviyo and add api key"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "List ID",
+        "info": "Please, use Klaviyo and add list ID"
+      },
+      {
+        "type": "text",
+        "id": "placeholder",
+        "label": "Placeholder Text",
+        "default": "Enter your email address"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Submit"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Subscribe Email Modal",
+        "category": "Subscribe"
+      }
+    ]
+  }
+{% endschema %}

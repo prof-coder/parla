@@ -1,0 +1,77 @@
+
+<div class="cart-view" data-cart-view="data-cart-view">
+  <div class="cart-view__block">
+    <div class="cart-view__block-inner">
+      <div class="cart-view__header">
+        <div class="container">
+          <p class="cart-view__headline">My Cart</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container cart-body" rv-show="cart.item_count | gt 0 ">
+    <div class="cart-view__block show-at-medium">
+      <div class="cart-view__body-heading">
+        <p class="cart-view__heading-item cart-view__label cart-view__label--dark">Item:</p>
+        <p class="cart-view__heading-description cart-view__label cart-view__label--dark">Description:</p>
+        <p class="cart-view__heading-price cart-view__label cart-view__label--dark">Item Total:</p>
+      </div>
+    </div>
+    <div class="cart-block" rv-each-item="cart.items">
+      <div class="cart-block__layout">
+        <a class="cart-block__delete" rv-data-cart-remove="index | plus 1"></a>
+        <div class="cart-block__media">
+          <img class="cart-block__image" rv-src="item.image | product_image_size '150x150' | img_tag: item.title" rv-alt="item.product_title" />
+        </div>
+
+        <div class="cart-block__info">
+          <p class="cart-block__title" rv-text="item.product_title"></p>
+
+          <div class="cart-block__variant-info">
+            <div rv-if="item.properties._swatch" class="cart-block__swatch">
+              <span rv-swatch="item.properties._swatch"></span>
+            </div>
+            <p class="cart-block__subtitle" rv-hide="item.variant_options | includes 'Default Title'"><span rv-html="item.variant_options"></span></p>
+            <p class="cart-block__subscription" rv-show="item.properties.subscription_id | isNotEmpty">
+              <span rv-html="item.price | moneyPriceFormat"></span> — Every <span rv-html="item.properties.shipping_interval_frequency"></span> <span rv-html="item.properties.shipping_interval_unit_type"></span> <i class="ml-2 far fa-repeat small" aria-hidden="true"></i>
+            </p>
+          </div>
+
+          <p class="cart-block__preorder" rv-if="item.properties.preorder | prepend 'EST. SHIP DATE '">
+            <span rv-html="item.properties.preorder"></span>
+          </p>
+
+          <div class="cart-block__actions">
+            <div class="quantity-selector">
+              <div class="quantity-selector__button quantity-selector__minus t-gray-chat"rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1"> - </div>
+              <div class="quantity-selector__quantity" rv-text="item.quantity"></div>
+              <div class="quantity-selector__button quantity-selector__plus t-gray-chat"rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1"> + </div>
+            </div>
+            <p class="cart-item-price"><span rv-html="item.price | moneyPriceFormat"></span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-view__footer" rv-show="cart.item_count | gt 0 ">
+    <div class="cart-view__footer-layout">
+      <div class="container">
+        <div class="cart-view__total-block">
+          <p class="cart-view__total cart-view__line-item-text cart-view__label cart-view__label--dark">Total: <span rv-text="cart.total_price | moneyPriceFormat"></span></p>
+          <a href="/checkout" class="button button--full" rv-show="cart.item_count | gt 0">Proceed To Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="cart-view__empty" rv-show="cart.item_count | lt 1 ">
+    <div class="container">
+
+    <div class="cart-view__block" rv-show="cart.items | lt 1 ">
+      <p>Your cart is empty. <a href="/products">Shop Now</a></p>
+    </div>
+    </div>
+  </div>
+</div>

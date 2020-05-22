@@ -1,0 +1,205 @@
+<!-- sections/image-with-text.liquid -->
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+{%- assign _section = section.settings -%}
+
+<section class="section image-with-text image-with-video is-full js-video-cover">
+  {% if _section.image_alignment != 'background' %}
+    <div class="container">
+  {% else %}
+    <div class="container img-text-bgimg">
+  {% endif %}
+
+    {% capture image_layout %}
+      <div class="image-with-text__image include--video-icon">
+        <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: _section.image %}"></div>
+        <span class="video-icon js-video-play hidden">
+          <img src="{{ 'play.png' | asset_url }}" />
+        </span>
+      </div>
+    {% endcapture %}
+
+    {% if _section.image_alignment == 'left' %}
+      {{ image_layout }}
+    {% endif %}
+
+    <div class="image-with-text__text {{ _section.text_alignment}}">
+      <div>
+        {% if _section.title != blank %}
+          <h2>{{ _section.title | escape }}</h2>
+        {% endif %}
+        {% if _section.text != blank %}
+          {{ _section.text }}
+        {% endif %}
+        {%- if section.blocks.size > 0 -%}
+          <div class="detail-items">
+            <div class="detail-items--inner">
+              {%- for block in section.blocks -%}
+                {%- assign _block = block.settings -%}
+                {%- case block.type -%}
+                  {%- when 'detail_item' -%}
+                    {%- if _block.title != blank -%}
+                      <div class="detail-items--item"><span><img src="{{ "check.png" | asset_url }}"></span>{{ _block.title }}</div>
+                    {%- endif -%}
+                {%- endcase -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {% if _section.image_alignment == 'right' %}
+      {{ image_layout }}
+    {% endif %}
+
+    {%- if _section.gap_image != blank -%}
+      <div class="gap_image">
+        <img src="{{ _section.gap_image | img_url: 'master' }}" />
+      </div>
+    {%- endif -%}
+  </div>
+  {%- if _section.video_url != blank -%}
+    <div class="video-modal js-video-wrapper js-video-close">
+      <div class="video-modal--close">
+        {%- include 'icon', type: 'close' -%}
+      </div>
+      <div class="video-modal--overlay"></div>
+      <div class="video-modal--inner">
+        <div class="video-modal--elem">
+          <div
+            data-video-elem
+            data-video-type="{{ _section.video_url.type }}"
+            data-video-id="{{ _section.video_url.id }}"
+            data-request-host="{{ request.host }}"
+          ></div>
+          {%- case _section.video_url.type -%}
+            {%- when 'youtube' -%}
+              <iframe class="Image--lazyLoad" data-src="//www.youtube.com/embed/{{ _section.video_url.id }}?autoplay=1&showinfo=0&controls=1&rel=0&modestbranding=1&mute=1" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            {%- when 'vimeo' -%}
+              <iframe class="Image--lazyLoad" data-src="//player.vimeo.com/video/{{ _section.video_url.id }}?autoplay=1&loop=1&autopause=0&portrait=0&byline=0&color=#FFFFFF&mute=1" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+          {%- endcase -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+  {
+    "name": "Video with text",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image Position",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Gap Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "gap_image",
+        "label": "Gap Image"
+      },
+      {
+        "type": "header",
+        "content": "Video"
+      },
+      {
+        "type": "video_url",
+        "accept": ["vimeo", "youtube"],
+        "id": "video_url",
+        "label": "Video URL"
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "has-text-centered",
+        "options": [
+          {
+            "value": "has-text-left",
+            "label": "Left"
+          },
+          {
+            "value": "has-text-centered",
+            "label": "Center"
+          },
+          {
+            "value": "has-text-right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "Video with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "detail_item",
+        "name": "Detail Points",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Item Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Video with Text",
+        "category": "Video"
+      }
+    ]
+  }
+{% endschema %}

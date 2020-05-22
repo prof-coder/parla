@@ -1,0 +1,130 @@
+.subscribe-modal {
+	padding: 3rem;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 9;
+	background: #fff;
+	box-shadow: inset 0 2px 1px rgba(10, 10, 10, 0.1), 0 0 0 0px rgba(10, 10, 10, 0.1);
+	transition: $transition-duration;
+
+	&.closed {
+		bottom: -999px;
+	}
+
+	& > div {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__image {
+		flex: 0 1 40%;
+
+		@include av-mq('mobile') {
+			display: none;
+		}
+
+		.bgimg {
+			height: 27vw;
+			max-height: 400px;
+
+			@include av-mq('lap-and-up') {
+				height: 30vw;
+			}
+
+			@include av-mq('desk') {
+				height: 27vw;
+			}
+
+			@include av-mq('tablet-and-down') {
+				height: 32vw;
+			}
+
+			@include av-mq('pocket') {
+				height: 37vw;
+			}
+
+			@include av-mq('mobile') {
+				height: 27vw;
+			}
+		}
+	}
+
+	&__form {
+		flex: 1 1 60%;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+
+		@include av-mq('mobile') {
+			flex: 1 1 100%;
+		}
+
+		& > div {
+			width: 70%;
+			max-width: 600px;
+
+			@include av-mq('lap-and-up') {
+				width: 80%;
+			}
+
+			@include av-mq('desk') {
+				width: 70%;
+			}
+
+			@include av-mq('tablet-and-down') {
+				width: 80%;
+			}
+
+			@include av-mq('pocket') {
+				width: 85%;
+			}
+
+			@include av-mq('mobile') {
+				width: 90%;
+			}
+		}
+
+		h2, p {
+			padding: 10px 0;
+			max-width: 350px;
+
+			@include av-mq('mobile') {
+				max-width: none;
+			}
+		}
+
+		form {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-top: 25px;
+		}
+
+		input[type="email"] {
+			padding: 20px;
+			width: 60%;
+			font-size: 1.3rem;
+			min-height: 42px;
+			letter-spacing: 0.1rem;
+
+			@include av-mq('mobile-s') {
+				width: 100%;
+			}
+		}
+
+		input[type="submit"] {
+			width: 38%;
+
+			@include av-mq('mobile-s') {
+				width: 100%;
+				margin-top: 20px;
+			}
+		}
+
+		.klaviyo_messages {
+			margin-top: 15px;
+		}
+	}
+}

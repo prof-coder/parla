@@ -1,0 +1,22 @@
+{%- assign _section = section.settings -%}
+<div class="instagram-wrapper">
+  {%- if _section.insta_title != blank -%}
+    <div class="instagram-wrapper--title">
+      {{ _section.insta_title }}
+    </div>
+  {%- endif -%}
+  <div id="insta-feed"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Instagram Area",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "insta_title",
+        "label": "Title"
+      }
+    ]
+  }
+{% endschema %}

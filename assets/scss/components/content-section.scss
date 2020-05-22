@@ -1,0 +1,101 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Content Section
+ * ----------------------------------------------------------------------------
+ */
+
+.content_section{
+  .vertical-aligment{
+    z-index: 2;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+  }
+  &.black_block{
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    max-height: $max-height-carousel;
+    position: relative;
+    .black_block__title{
+      @include h2-style;
+      // color: #000;
+      // font-size: 36px;
+      // line-height: 123%;
+      margin-bottom: 25px;
+    }
+    .black_block__cta{
+      margin-top: 25px;
+    }
+    &:before{
+      content: '';
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      background: rgba(0, 0, 0, $black-layout-transparency);
+    }
+  }
+  &.big_block{
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    max-height: $max-height-carousel;
+    position: relative;
+    .big_block__title{
+      // color: #000;
+      // font-size: 36px;
+      // line-height: 123%;
+      @include h2-style;
+      margin-bottom: 25px;
+    }
+    .big_block__cta{
+      margin-top: 25px;
+    }
+    .big_block__background{
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      background: center center no-repeat;
+      background-size: cover;
+      &:before{
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        background: rgba(255, 255, 255, $white-layout-transparency);
+      }
+    }
+
+    &.content_left{
+      .vertical-aligment{
+        left: 20px;
+        right: calc(50% + 20px);
+      }
+      .big_block__background{
+        left: 50%;
+        &:before{
+          display: none;
+        }
+      }
+    }
+    &.content_right{
+      .vertical-aligment{
+        right: 20px;
+        left: calc(50% + 20px);;
+      }
+      .big_block__background{
+        right: 50%;
+        &:before{
+          display: none;
+        }
+      }
+    }
+  }
+}

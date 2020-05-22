@@ -1,0 +1,152 @@
+$mobile-s: 568px;
+$mobile: 768px;
+$over-mobile: 769px;
+$tablet: 1087px;
+$over-tablet: 1088px;
+
+$phone-small-media:      "screen and (max-width: #{$mobile-s})";
+$phone-media:            "screen and (max-width: #{$mobile - 1})";
+$phone-up-media:         "screen and (min-width: #{$mobile})";
+$tablet-media:           "screen and (min-width: #{$mobile}) and (max-width: #{$tablet})";
+$tablet-and-down-media:  "screen and (max-width: #{$tablet})";
+$tablet-and-up:    "screen and (min-width: #{$tablet})";
+$pocket:           "screen and (max-width: 1007px)";
+$lap:              "screen and (min-width: #{$over-tablet}) and (max-width: 1239px)";
+$lap-and-up:       "screen and (min-width: #{$over-tablet})";
+$desk:             "screen and (min-width: 1280px)";
+$widescreen:       "screen and (min-width: 1500px)";
+
+@mixin av-mq($alias) {
+  @if $alias == "mobile-s" {
+    @media #{$phone-small-media} {
+      @content;
+    }
+  } @else if $alias == "mobile" {
+    @media #{$phone-media} {
+      @content;
+    }
+  } @else if $alias == "tablet" {
+    @media #{$tablet-media} {
+      @content;
+    }
+  } @else if $alias == "tablet-and-down" {
+    @media #{$tablet-and-down-media} {
+      @content;
+    }
+  } @else if $alias == "tablet-and-up" {
+    @media #{$tablet-and-up} {
+      @content;
+    }
+  } @else if $alias == "pocket" {
+    @media #{$pocket} {
+      @content;
+    }
+  } @else if $alias == "lap" {
+    @media #{$lap} {
+      @content;
+    }
+  } @else if $alias == "lap-and-up" {
+    @media #{$lap-and-up} {
+      @content;
+    }
+  } @else if $alias == "desk" {
+    @media #{$desk} {
+      @content;
+    }
+  } @else if $alias == "widescreen" {
+    @media #{$widescreen} {
+      @content;
+    }
+  }
+}
+
+$responsive-xs: 767px;
+$responsive-sm: 1087px;
+$responsive-md: 1279px;
+$responsive-lg: 1499px;
+
+/*  Responsive Helpers  */
+
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block {
+  display: none !important;
+}
+
+@media (max-width: $responsive-xs) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .visible-xs-block {
+    display: block !important;
+  }
+  .visible-xs-inline {
+    display: inline !important;
+  }
+  .visible-xs-inline-block {
+    display: inline-block !important;
+  }
+  .align-center-xs {
+    text-align: center;
+  }
+}
+
+@media (min-width: $responsive-xs + 1) and (max-width: $responsive-sm) {
+  .hidden-sm {
+    display: none !important;
+  }
+  .visible-sm-block {
+    display: block !important;
+  }
+  .visible-sm-inline {
+    display: inline !important;
+  }
+  .visible-sm-inline-block {
+    display: inline-block !important;
+  }
+}
+
+@media (min-width: $responsive-sm + 1) and (max-width: $responsive-md) {
+  .hidden-md {
+    display: none !important;
+  }
+  .visible-md-block {
+    display: block !important;
+  }
+  .visible-md-inline {
+    display: inline !important;
+  }
+  .visible-md-inline-block {
+    display: inline-block !important;
+  }
+}
+
+@media (min-width: $responsive-md + 1) {
+  .hidden-lg {
+    display: none !important;
+  }
+  .visible-lg-block {
+    display: block !important;
+  }
+  .visible-lg-inline {
+    display: inline !important;
+  }
+  .visible-lg-inline-block {
+    display: inline-block !important;
+  }
+}
+.visible-inline-block {
+  display: inline-block !important;
+}
+.hidden {
+  display: none !important;
+}

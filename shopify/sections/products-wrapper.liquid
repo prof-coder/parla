@@ -1,0 +1,58 @@
+{%- assign _section = section.settings -%}
+<div class="product-wrapper-section">
+  <div class="product-wrapper--inner">
+    {%- if _section.title != blank -%}
+      <h2 class="product-wrapper--title">{{ _section.title }}</h2>
+    {%- endif -%}
+    {%- if _section.sub_title != blank -%}
+      <p class="product-wrapper--sub-title">{{ _section.sub_title }}</p>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="product-wrapper--items">
+        {%- for block in section.blocks -%}
+          {%- assign _product = all_products[block.settings.product] -%}
+          {%- if _product != blank -%}
+            {%- include 'product-item', _product: _product -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Product Wrapper",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub Title",
+        "default": "Subtitle"
+      }      
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product Item",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Wrapper",
+        "category": "Product"
+      }
+    ]
+  }
+{% endschema %}

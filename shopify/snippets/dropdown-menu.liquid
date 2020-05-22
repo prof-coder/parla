@@ -1,0 +1,21 @@
+<li {% if class_has_children != empty %} class="{{ class_has_children }}" {% endif %}>
+  <a href="{{ first_level_link.url }}" class="first_level">{{ title }}</a>
+  <div class="nav__dropdown">
+    <ul>
+      {%- for first_level_link in dropdown_links -%}
+
+          {% assign collection_image = '' %}
+          {% for collection in collections %}
+            {% if collection.url == first_level_link.url %}
+              {% assign collection_image = collection.image | img_url: '650x' %}
+            {% endif %}
+          {% endfor %}
+
+          <li {% if first_level_link.active %} class="{{ class_current }}" {% endif %}>
+            <a href="{{first_level_link.url}}" data-image="{{collection_image}}">{{first_level_link.title}}</a>
+          </li>
+
+      {%- endfor -%}
+    </ul>
+  </div><!-- /.nav__dropdown -->
+</li>

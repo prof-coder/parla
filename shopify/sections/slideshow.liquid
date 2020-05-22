@@ -1,0 +1,292 @@
+{%- assign _section = section.settings -%}
+
+{%- assign content_alignments = _section.content_alignment | split: ' ' -%}
+
+{%- assign vertical_class = 'vertical--' | append: content_alignments[1] -%}
+{%- assign horizontal_class = 'align--' | append: content_alignments[0] -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="slideshow-container">
+    <div class="slideshow" id="slideshow-{{ section.id }}">
+      {%- for block in section.blocks -%}
+
+        {%- assign _block = block.settings -%}
+
+        <div class="slideshow__slide 
+              {% if section.blocks.size == 1 %}no-js{% endif %}
+              {% if forloop.first %}is-selected{% endif %} 
+              slideshow__slide--{{ block.id }}">
+
+          {%- assign mobile_image = _block.mobile_image | default: _block.image -%}
+
+          {%- if mobile_image == blank -%}
+            <div class="slideshow__image hidden-phone-and-up">
+              <div class="placeholder-background">
+                {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            </div>
+          {%- else -%}
+            {%- assign _percent = 1 | divided_by: mobile_image.aspect_ratio | times: 100 -%}
+            <div class="slideshow__image ratio-container lazyload{% unless forloop.first %} lazypreload{% endunless %} hidden-phone-and-up"
+                 data-bgset="{% include 'bgsets', bg_img: mobile_image %}"
+                 data-sizes="auto"
+                 data-parent-fit="contain"
+                 style="background-position: {{ _block.img_position }};
+                        background-image: url('{{ mobile_image | img_url: '1x1' }}');
+                        padding-bottom: {{_percent}}%;
+                        top: calc((100% - {{_percent}}vw) / 2);
+                        ">
+            </div>
+          {%- endif -%}
+          <noscript>
+            <div class="slideshow__image hidden-phone-and-up"{% if mobile_image %} style="background-position: {{ _block.img_position }};
+              background-image: url('{{ mobile_image | img_url: '800x' }}');"{% endif %}>
+              {% if mobile_image == blank %}
+                <div class="placeholder-background">
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+          </noscript>
+
+          {%- if _block.image == blank -%}
+            <div class="slideshow__image hidden-phone">
+              <div class="placeholder-background">
+                {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            </div>
+          {%- else -%}
+            <div class="slideshow__image ratio-container lazyload{% unless forloop.first %} lazypreload{% endunless %} hidden-phone"
+                   data-bgset="{% include 'bgsets', bg_img: _block.image %}"
+                   data-sizes="auto"
+                   data-parent-fit="contain"
+                   style="background-position: {{ _block.img_position }};
+                          background-image: url('{{ _block.image | img_url: '300x' }}');">
+            </div>
+          {%- endif -%}
+          <noscript>
+            <div class="slideshow__image hidden-phone"{% if _block.image %} style="background-position: {{ _block.img_position }};
+              background-image: url('{{ _block.image | img_url: '1x' }}');"{% endif %}>
+              {% if _block.image == blank %}
+                <div class="placeholder-background">
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+          </noscript>
+
+          <div class="slideshow__text-container">
+            <div class="slideshow__text-container__inner">
+              <div class="slideshow__text-content {{ vertical_class }} {{ horizontal_class }}">
+                <div class="slideshow__text-content__inner">
+                  {%- unless _block.sub_title == blank -%}
+                    <h5 class="slideshow__sub-title">
+                      {{ _block.sub_title }}
+                    </h5>
+                  {%- endunless -%}
+                  {%- unless _block.title == blank -%}
+                    <h2 class="slideshow__title">
+                      {{ _block.title }}
+                    </h2>
+                  {%- endunless -%}
+                  {%- unless _block.text == blank -%}
+                    <div class="slideshow__text">
+                      {{ _block.text }}
+                    </div>
+                  {%- endunless -%}
+
+                  {%- assign _product_handle = _block.product -%}
+                  {%- assign _product = all_products[_product_handle] -%}
+                  
+                  {%- if _block.cta_text != blank -%}
+                    <div class="slideshow__btn-container">
+                      {%- if _product == blank -%}
+                        <a href="{{ _block.cta_url }}" class="btn button is-link btn--blue slideshow__btn">
+                          {{ _block.cta_text }}
+                        </a>
+                      {%- else -%}
+                        {% if _product.available %}
+                          <a href="{{ _product.url }}" class="btn button is-link btn--blue slideshow__btn">
+                            {{ _block.cta_text }}
+                          </a>
+                        {% else %}
+                          <a href='#' class='BIS_trigger btn button is-link btn--blue slideshow__btn disabled' data-product-data='{{ _product | json | escape }}'>
+                            {{ _block.cta_text }}
+                          </a>
+                        {% endif %}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    <button class="button-scroll-bottom">
+      {%- include 'icon', type: 'arrow-down' -%}
+    </button>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Hero Slider",
+    "settings": [
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "default": "center center",
+        "label": "Text alignment",
+        "options": [
+          {
+            "label": "Top left",
+            "value": "left top"
+          },
+          {
+            "label": "Top center",
+            "value": "center top"
+          },
+          {
+            "label": "Top right",
+            "value": "right top"
+          },
+          {
+            "label": "Middle left",
+            "value": "left center"
+          },
+          {
+            "label": "Middle center",
+            "value": "center center"
+          },
+          {
+            "label": "Middle right",
+            "value": "right center"
+          },
+          {
+            "label": "Bottom left",
+            "value": "left bottom"
+          },
+          {
+            "label": "Bottom center",
+            "value": "center bottom"
+          },
+          {
+            "label": "Bottom right",
+            "value": "right bottom"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "select",
+            "id": "img_position",
+            "label": "Image position",
+            "default": "center center",
+            "options": [
+              {
+                "label": "Top left",
+                "value": "left top"
+              },
+              {
+                "label": "Top center",
+                "value": "center top"
+              },
+              {
+                "label": "Top right",
+                "value": "right top"
+              },
+              {
+                "label": "Middle left",
+                "value": "left center"
+              },
+              {
+                "label": "Middle center",
+                "value": "center center"
+              },
+              {
+                "label": "Middle right",
+                "value": "right center"
+              },
+              {
+                "label": "Bottom left",
+                "value": "left bottom"
+              },
+              {
+                "label": "Bottom center",
+                "value": "center bottom"
+              },
+              {
+                "label": "Bottom right",
+                "value": "right bottom"
+              }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image"
+          },
+          {
+            "type": "header",
+            "content": "Content"
+          },
+          {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub Title",
+            "default": "Subtitle"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Lorem Ipsum Dolor Sit Amet"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum accumsan rhoncus lectus eu tempus.</p>"
+          },
+          {
+            "type": "text",
+            "id": "cta_text",
+            "label": "Button Title"
+          },
+          {
+            "type": "url",
+            "id": "cta_url",
+            "label": "Button Url"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Slider",
+        "category": "Sliders"
+      }
+    ]
+  }
+{% endschema %}

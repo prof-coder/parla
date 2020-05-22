@@ -1,0 +1,57 @@
+<!-- sections/placeholder.liquid -->
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Heading: title of the block
+  - Text: description of the block
+
+{%- endcomment -%}
+
+{%- assign settings = section.settings -%}
+
+<section class="section custom-placeholder is-full">
+  <div class="container">
+    
+    <div class="custom-placeholder__text has-text-centered">
+      <div>
+        {% if settings.title != blank %}
+          <h2>{{ settings.title | escape }}</h2>
+        {% endif %}
+
+        {% if settings.text != blank %}
+          <p>{{ settings.text }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Custom Placeholder",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Custom Block Placeholder"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Placeholder",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

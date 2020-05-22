@@ -1,0 +1,77 @@
+{%- assign _section = section.settings-%}
+<div class="page-banner">
+  <div class="page-banner--background"></div>
+  <div class="page-banner--inner">
+    {%- if _section.main_img != blank -%}
+      <div class="banner--image">
+        <img
+          class="lazyload full-width"
+          src="{{ _section.main_img | img_url: image_size }}"
+          srcset="{% include 'responsive-bg-image', image: _section.main_img %}"
+          alt="{{ _section.main_img.alt }}"
+        />
+      </div>
+    {%- endif -%}
+    <div class="banner--content">
+      <div class="banner-content--inner">
+        {%- if _section.title != blank -%}
+          <div class="banner--title">
+            {{ _section.title | newline_to_br }}
+          </div>
+        {%- endif -%}
+        {%- if _section.detail != blank -%}
+          <div class="banner--detail">
+            {{ _section.detail | newline_to_br }}
+          </div>
+        {%- endif -%}
+        <a href="{{ _section.arrow_link }}"  class="content-arrow js-scroll-link">
+          <img src="{{ 'long-arrow-down.png' | asset_url }}" />
+        </a>
+      </div>
+    </div>
+    {%- if _section.badge_img != blank -%}
+      <div class="banner--badge-image">
+        <img
+          class="lazyload full-width"
+          src="{{ _section.badge_img | img_url: image_size }}"
+          srcset="{% include 'responsive-bg-image', image: _section.badge_img %}"
+          alt="{{ _section.badge_img.alt }}"
+        />
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Page Banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "main_img",
+        "label": "Main Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "badge_img",
+        "label": "Badge Image"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "detail",
+        "label": "Detail"
+      },
+      {
+        "type": "text",
+        "id": "arrow_link",
+        "label": "Arrow Link",
+        "info": "i.e. #about-members"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,54 @@
+{%- assign _section = section.settings -%}
+<div class="product-faqs product-container">
+  <div class="faqs-inner">
+    {%- if _section.title != blank -%}
+      <h2 class="faqs-title">{{ _section.title }}</h2>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="faqs-items">
+        <div class="faqs-items-inner">
+          {%- for block in section.blocks -%}
+            {%- assign _block = block.settings -%}
+            <div class="faqs-item">
+              <div class="faqs-item--title">{{ _block.title }}</div>
+              <div class="faqs-item--info">
+                <div class="faqs-item--detail">{{ _block.detail }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Product FAQs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "What's in"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "in-item",
+        "name": "Product in Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "detail",
+            "label": "Detail"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

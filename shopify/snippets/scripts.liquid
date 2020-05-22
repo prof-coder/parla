@@ -1,0 +1,46 @@
+<script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+
+{% comment %} Theme {% endcomment %}
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+
+<script type="text/javascript">
+  window.PARAMCustomer = '{% if customer %}&customer_id={{ customer.id }}&customer_email={{ customer.email }}{% endif %}';
+  window.ShopifyDomain="{{ shop.permanent_domain }}";
+</script>
+
+{{'//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag}}
+{{'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/cart.min.js' | script_tag }}
+{{'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/rivets-cart.min.js' | script_tag}}
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    $(function() {
+        rivets.formatters.moneyPriceFormat = function(value) {
+          return '£' + (value / 100);
+        }
+        rivets.formatters.isEmpty = function(value) {
+          if (value) {return false;} else {return true;}
+        }
+        rivets.formatters.isNotEmpty = function(value) {
+          if (value) {return true;} else {return false;}
+        }
+        CartJS.init({{ cart | json }}, {
+        "dataAPI": true,
+        "moneyFormat": "{{ shop.money_format }}",
+        "moneyWithCurrencyFormat": "{{ shop.money_with_currency_format }}"
+        });
+    });
+  });
+  
+</script>
+
+<script type="text/javascript" src="{{ 'bundle.js' | asset_url }}"></script>

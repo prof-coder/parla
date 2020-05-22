@@ -1,0 +1,19 @@
+{% comment %}
+  Input:
+    dataWidths : {Array}
+    imageUrl : {Image Object}
+  Output:
+    srcSets : {String}
+{% endcomment %}
+
+{%- assign dataWidths = "180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1950, 2100, 2260, 2450, 2700, 3000, 3350, 3750, 4100" | split: ', ' -%}
+
+{%- if img != blank -%}
+  {%- for dataWidth in dataWidths -%}{% assign img_width = img.width | append: '' %}{%- if img_width >= dataWidth -%}{% assign imageFilter = dataWidth | append: 'x' %}
+    {{ img | img_url: imageFilter }} {{ dataWidth }}w,
+    {%- else -%}
+      {{ img | img_url: 'master' }} {{ img.width }}w,
+    {%- endif -%}
+  {%- endfor -%}
+  {{ img | img_url: 'master' }} {{ img.width }}w {{ img.height }}h
+{%- endif -%}

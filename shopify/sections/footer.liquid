@@ -1,0 +1,83 @@
+<!-- sections/footer.liquid -->
+
+{%- assign _section = section.settings -%}
+<div class="footer-section">
+  <div class="footer-section--top">
+    <div class="footer-section--logo">
+      {%- if _section.logo != blank -%}
+        <a href="/" class="site-logo--link">
+          <img src="{{ _section.logo | img_url: 'master' }}" alt="{{ shop.name }}" class="site-logo">
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="footer-section--links">
+      {%- if section.blocks.size > 0 -%}
+        <h4>Quick Links</h4>
+        <div class="footer-section--links-inner">
+          {%- for block in section.blocks -%}
+            {%- include 'footer-nav' with data:linklists[block.settings.footer_linklist]-%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="footer-section--share">
+      <h4>Follow us</h4>
+      <div class="follow-index">#Pärlaplanet</div>
+      {%- include 'social-media-links' -%}
+    </div>
+  </div>
+  <div class="footer-section--bottom">
+    <div class="footer-section--bottom-left">
+      {{ _section.left_text }}
+    </div>
+    <div class="footer-section--bottom-right">
+      {{ _section.right_text | replace: '<a ', '<a target="_blank"' }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "max_blocks": 5,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "header",
+        "content": "Copyright at the bottom"
+      },
+      {
+        "type": "richtext",
+        "id": "left_text",
+        "label": "Bottom Left Text"
+      },
+      {
+        "type": "richtext",
+        "id": "right_text",
+        "label": "Bottom Right Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "link_list",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "footer_linklist",
+            "label": "Second menu",
+            "default": "footer"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

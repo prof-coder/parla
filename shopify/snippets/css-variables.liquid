@@ -1,0 +1,82 @@
+<!-- snippets/css-variables.liquid -->
+
+<style media="screen">
+  :root{
+      --color-primary: {{ settings.primaty_color }};
+      --color-body-text: {{ settings.color_body_text }};
+      --color-main-background: {{ settings.color_main_bg }};
+      --color-border: {{ settings.color_body_text | color_lighten: 50 }};
+      --footer-social-icons-size: {{ settings.footer_social_icons_size }};
+  }
+</style>
+
+{% if settings.font_default_active %}
+<style>
+  @font-face {
+      font-family: 'Cerebri Sans';
+      src: url('{{ "CerebriSans-Medium.eot" | asset_url }}');
+      src: url('{{ "CerebriSans-Medium.eot?#iefix" | asset_url }}') format('embedded-opentype'),
+          url('{{ "CerebriSans-Medium.woff2" | asset_url }}') format('woff2'),
+          url('{{ "CerebriSans-Medium.woff" | asset_url }}') format('woff'),
+          url('{{ "CerebriSans-Medium.ttf" | asset_url }}') format('truetype'),
+          url('{{ "CerebriSans-Medium.svg#CerebriSans-Medium" | asset_url}}') format('svg');
+      font-weight: 500;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Cerebri Sans Bold';
+      src: url('{{ "CerebriSans-Bold.eot" | asset_url }}');
+      src: url('{{ "CerebriSans-Bold.eot?#iefix" | asset_url }}') format('embedded-opentype'),
+          url('{{ "CerebriSans-Bold.woff2" | asset_url }}') format('woff2'),
+          url('{{ "CerebriSans-Bold.woff" | asset_url }}') format('woff'),
+          url('{{ "CerebriSans-Bold.ttf" | asset_url }}') format('truetype'),
+          url('{{ "CerebriSans-Bold.svg#CerebriSans-Bold" | asset_url}}') format('svg');
+      font-weight: bold;
+      font-style: normal;
+  }
+
+  :root {
+    --font-heading: 'Cerebri Sans', Arial;
+    --font-body: 'Cerebri Sans', Arial;
+    --font-body-weight: 'Cerebri Sans Bold', Arial;
+    --font-body-style: 'Cerebri Sans', Arial;
+    --font-body-bold-weight: 'Cerebri Sans Bold', Arial;
+  }
+</style>
+{% else %}
+<style>
+  {{ settings.font_heading | font_face }}
+  {{ settings.font_body | font_face }}
+
+  {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+  {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+  {{ font_body_bold | font_face }}
+  {{ font_body_bold_italic | font_face }}
+
+  :root {
+    --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+    --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+    --font-body-weight: {{ settings.font_body.weight }};
+    --font-body-style: {{ settings.font_body.style }};
+    --font-body-bold-weight: {{ font_body_bold.weight | default: 'bold' }};
+  }
+</style>
+{% endif %}
+
+
+{% if settings.icons_feather_active %}
+<style media="screen">
+@font-face {
+  font-family: "feather";
+  src: url('{{ "feather.eot" | asset_url }}'); /* IE9*/
+  src: url('{{ "feather.eot#iefix" | asset_url }}') format('embedded-opentype'), /* IE6-IE8 */
+  url('{{ "feather.woff" | asset_url }}') format('woff'), /* chrome, firefox */
+  url('{{ "feather.ttf" | asset_url }}') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('{{ "feather.svg#feather" | asset_url }}') format('svg'); /* iOS 4.1- */
+}
+
+</style>
+  {{ 'feather.css' | asset_url | stylesheet_tag }}
+{% endif %}

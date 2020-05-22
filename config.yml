@@ -1,0 +1,24 @@
+development:
+  password: 1dc0ff0ce1236151b37bc36a1ad1ca3a
+  theme_id: "89233686664"
+  store: parlatoothpastetabs.myshopify.com
+  directory: ../shopify/
+  ignore_files:
+    - config/settings_data.json
+
+# Dev
+# development:
+#   password: 1dc0ff0ce1236151b37bc36a1ad1ca3a
+#   theme_id: "86633775240"
+#   store: parlatoothpastetabs.myshopify.com
+#   directory: ../shopify/
+#   ignore_files:
+#     - config/settings_data.json
+# # Live
+# production:
+#   password: 1dc0ff0ce1236151b37bc36a1ad1ca3a
+#   theme_id: "85981233288"
+#   store: parlatoothpastetabs.myshopify.com
+#   directory: ../shopify/
+#   ignore_files:
+#     - config/settings_data.json

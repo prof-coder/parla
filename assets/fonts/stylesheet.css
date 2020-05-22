@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Beatrice';
+    src: url('Beatrice-Regular.eot');
+    src: url('Beatrice-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Beatrice-Regular.woff2') format('woff2'),
+        url('Beatrice-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beatrice';
+    src: url('Beatrice-Semibold.eot');
+    src: url('Beatrice-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('Beatrice-Semibold.woff2') format('woff2'),
+        url('Beatrice-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beatrice';
+    src: url('Beatrice-Regular.eot');
+    src: url('Beatrice-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Beatrice-Regular.woff2') format('woff2'),
+        url('Beatrice-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beatrice';
+    src: url('Beatrice-Semibold.eot');
+    src: url('Beatrice-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('Beatrice-Semibold.woff2') format('woff2'),
+        url('Beatrice-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+

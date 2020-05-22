@@ -1,0 +1,244 @@
+<section class="section-columns section-columns--login animated">
+  <div class="container">
+    <div class="section__body">
+      <div class="section__cols">
+        <div class="section__col">
+          <div class="section__center">
+            <div class="section__content">
+              {%- assign form_submitted = false -%}
+              {% form 'recover_customer_password' %}
+                {%- if form.posted_successfully? or form.errors -%}
+                  {%- assign form_submitted = true -%}
+                {%- endif -%}
+              {% endform %}
+
+              {% comment %}
+                Login
+              {% endcomment %}
+              <div class="form form--login js-ajax-login" {% if form_submitted %} style="display: none"{% endif %}>
+                {% form 'customer_login' %}
+                  {%- assign error_class = 'error' | prepend: ' ' -%}
+                  {%- capture error_login_email -%}{%- if form.errors contains 'form' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+                  {%- capture error_login_password -%}{%- if form.errors contains 'form' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+
+                  <div class="form__head">
+                    <h4 class="h4 form__title">
+                      {{- 'customer.login.title' | t -}}
+                    </h4><!-- /.form__title -->
+                  </div><!-- /.form__head -->
+
+                  {% if form.errors and template.name == 'login' %}
+                    <div class="form__errors">
+                      {{- form.errors | default_errors -}}
+                    </div><!-- /.form__errors -->
+                  {% endif %}
+
+                  <div class="form__body">
+                    <div class="form__row{{ error_login_email }}">
+                      <label for="field-login-email" class="form__label">{{- 'customer.login.email' | t -}}</label>
+
+                      <div class="form__controls">
+                        <input type="email" class="field" name="customer[email]" id="field-login-email" value="" placeholder="{{- 'customer.login.email' | t -}}" required="required" >
+                      </div><!-- /.form__controls -->
+                    </div><!-- /.form__row -->
+
+                    <div class="form__row{{- error_login_password -}}">
+                      <label for="field-login-password" class="form__label">{{- 'customer.login.password' | t -}}</label>
+
+                      <div class="form__controls">
+                        <input type="password" class="field" name="customer[password]" id="field-login-password" value="" placeholder="{{- 'customer.login.password' | t -}}" required="required" >
+                      </div><!-- /.form__controls -->
+                    </div><!-- /.form__row -->
+                  </div><!-- /.form__body -->
+
+                  <div class="form__actions">
+                    <button type="submit" class="form__btn btn btn--solid-darkgrey btn--mobile-large btn--block">
+                      {{- 'customer.login.sign_in' | t -}}
+                    </button>
+
+                    <div class="form__cta">
+                      <a href="#form--recover" class="forgotten-pass link-default link-default--mobile">{{ 'customer.login.forgot_password' | t }}</a>
+                    </div><!-- /.form__cta -->
+                  </div><!-- /.form__actions -->
+                {% endform %}
+              </div><!-- /.form -->
+
+              {% comment %}
+                Login as a Guest
+              {% endcomment %}
+              {% if shop.checkout.guest_login %}
+                <div class="form form--guest">
+                  {% form 'guest_login' %}
+                    <div class="form__head">
+                      <h4 class="h4 form__title">
+                        {{- 'customer.login.guest_title' | t -}}
+                      </h4><!-- /.form__title -->
+                    </div><!-- /.form__head -->
+
+                    <div class="form__actions">
+                      <button type="submit" class="form__btn btn btn--solid-darkgrey btn--mobile-large btn--block">
+                        {{- 'customer.login.guest_continue' | t -}}
+                      </button>
+                    </div><!-- /.form__actions -->
+                  {% endform %}
+                </div><!-- /.form -->
+              {%- endif -%}
+
+              {% comment %}
+                Forgot Password
+              {% endcomment %}
+              <div class="form form--recover"{% if form_submitted %} style="display: block"{% else %} style="display: none;" {% endif %}>
+                {% form 'recover_customer_password' %}
+                  {%- assign error_class = 'error' | prepend: ' ' -%}
+                  {%- capture error_reset_email -%}{%- if form.errors contains 'form' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+
+                  <div class="form__head">
+                    <h4 class="h4 form__title">
+                      {{- 'customer.recover_password.title' | t -}}
+                    </h4><!-- /.form__title -->
+
+                    <!-- <div class="form__head-entry">
+                      <p>{{- 'customer.recover_password.subtext' | t -}}</p>
+                    </div> -->
+                  </div><!-- /.form__head -->
+
+                  {%- if form.posted_successfully? -%}
+                    <div class="form__message form__message--success">
+                      {{- 'customer.recover_password.success' | t -}}
+                    </div><!-- /.form-alert -->
+                  {%- else -%}
+                    {% if form.errors and template.name == 'login' %}
+                      <div class="form__errors">
+                        {{- form.errors | default_errors -}}
+                      </div><!-- /.form__errors -->
+                    {% endif %}
+
+                    <div class="form__body">
+                      <div class="form__row{{ error_reset_email }}">
+                        <label for="field-reset-email" class="form__label">{{- 'customer.recover_password.email' | t -}}</label>
+
+                        <div class="form__controls">
+                          <input type="email" class="field" name="email" id="field-reset-email" value="" placeholder="{{- 'customer.recover_password.email' | t -}}" >
+                        </div><!-- /.form__controls -->
+                      </div><!-- /.form__row -->
+                    </div><!-- /.form__body -->
+
+                    <div class="form__actions">
+                      <button type="submit" class="form__btn btn btn--solid-darkgrey btn--mobile-large btn--block">
+                        {{- 'customer.recover_password.submit' | t -}}
+                      </button>
+
+                      <div class="form__cta">
+                        <a href="#form--login" class="loginfrom-link link-default link-default--mobile">{{ 'customer.reset_password.login' | t }}</a>
+                      </div><!-- /.form__cta -->
+                    </div><!-- /.form__actions -->
+                  {%- endif -%}
+                {% endform %}
+              </div><!-- /.form -->
+            </div><!-- /.section__content -->
+          </div><!-- /.section__center -->
+        </div><!-- /.section__col -->
+
+        <div class="section__col">
+          <div class="section__center">
+            <div class="section__content">
+              <div class="form form--register js-form-register">
+                {% form 'create_customer' %}
+                  {%- assign error_class = 'error' | prepend: ' ' -%}
+                  {%- capture error_first_name -%}{%- if form.errors contains 'first_name' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+                  {%- capture error_last_name -%}{%- if form.errors contains 'last_name' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+                  {%- capture error_email -%}{%- if form.errors contains 'email' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+                  {%- capture error_password -%}{%- if form.errors contains 'password' -%}{{- error_class -}}{%- endif -%}{%- endcapture -%}
+
+                  <div class="form__head">
+                    <h4 class="h4 form__title">
+                      {{- 'customer.register.title' | t -}}
+                    </h4><!-- /.form__title -->
+
+                    <div class="form__head-entry">
+                      <p>{{- 'customer.register.subtitle' | t -}}</p>
+                    </div><!-- /.form__head-entry -->
+                  </div><!-- /.form__head -->
+
+                  {% if form.errors and template.name == 'register' %}
+                    <div class="form__errors">
+                      {{- form.errors | default_errors -}}
+                    </div><!-- /.form__errors -->
+                  {% endif %}
+
+                  <div class="form__body">
+                    <div class="form__row{{- error_email -}}">
+                      <label for="field-email" class="form__label">{{- 'customer.register.email' | t -}}</label>
+
+                      <div class="form__controls">
+                        <input type="email" class="field" name="customer[email]" id="field-email" value="{{- form.email -}}" placeholder="{{- 'customer.register.email' | t -}}" required>
+                      </div><!-- /.form__controls -->
+                    </div><!-- /.form__row -->
+
+                    <div class="form__cols">
+                      <div class="form__col">
+                        <div class="form__row{{- error_first_name -}}">
+                          <label for="field-first-name" class="form__label">{{- 'customer.register.first_name' | t -}}</label>
+
+                          <div class="form__controls">
+                            <input type="text" class="field" name="customer[first_name]" id="field-first-name" value="{{- form.first_name -}}" placeholder="{{- 'customer.register.first_name' | t -}}">
+                          </div><!-- /.form__controls -->
+                        </div><!-- /.form__row -->
+                      </div><!-- /.form__col -->
+
+                      <div class="form__col">
+                        <div class="form__row{{- error_last_name -}}">
+                          <label for="field-last-name" class="form__label">{{- 'customer.register.last_name' | t -}}</label>
+
+                          <div class="form__controls">
+                            <input type="text" class="field" name="customer[last_name]" id="field-last-name" value="{{- form.last_name -}}" placeholder="{{- 'customer.register.last_name' | t -}}">
+                          </div><!-- /.form__controls -->
+                        </div><!-- /.form__row -->
+                      </div><!-- /.form__col -->
+                    </div><!-- /.form__cols -->
+
+                    <div class="form__row{{- error_password -}}">
+                      <label for="field-password" class="form__label">{{- 'customer.register.password' | t -}}</label>
+
+                      <div class="form__controls">
+                        <input type="password" class="field js-pass" name="customer[password]" id="field-password" value="" placeholder="{{- 'customer.register.password' | t -}}" required>
+                      </div><!-- /.form__controls -->
+                    </div><!-- /.form__row -->
+
+                    <div class="form__row">
+                      <label for="field-password2" class="form__label">{{- 'customer.register.confirm_password' | t -}}</label>
+
+                      <div class="form__controls">
+                        <input type="password" class="field js-pass-confirm" name="customer-pass-confirm" id="field-password2" value="" placeholder="{{- 'customer.register.confirm_password' | t -}}" required>
+
+                        <p class="form__errors" style="display: none">
+                          {{ 'customer.register.message' | t }}
+                        </p><!-- /.form__errors -->
+                      </div><!-- /.form__controls -->
+                    </div><!-- /.form__row -->
+
+                    {% comment %}
+                    <div class="form__row form__row--checkbox">
+                      <div class="checkbox checkbox--secondary checkbox--mobile">
+                        <input type="checkbox" name="check-register" id="check-register">
+
+                        <label for="check-register">{{- 'customer.register.mailing_list' | t -}}</label>
+                      </div><!-- /.checkbox -->
+                    </div><!-- /.form__row -->
+                    {% endcomment %}
+                  </div><!-- /.form__body -->
+
+                  <div class="form__actions">
+                    <button type="submit" class="form__btn btn btn--solid-darkgrey btn--mobile-large btn--block">
+                      {{- 'customer.register.submit' | t -}}
+                    </button>
+                  </div><!-- /.form__actions -->
+                {% endform %}
+              </div><!-- /.form -->
+            </div><!-- /.section__content -->
+          </div><!-- /.section__center -->
+        </div><!-- /.section__col -->
+      </div><!-- /.section__cols -->
+    </div><!-- /.section__body -->
+  </div><!-- /.container -->
+</section><!-- /.section-columns -->

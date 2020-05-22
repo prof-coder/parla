@@ -1,0 +1,12 @@
+<!-- snippets/header-logo.liquid -->
+
+<a href="{{ shop.url }}" style="max-width: {{ max_width }}px" class="header-logo">
+  {% if _section.logo != blank %}
+  	{% capture image_size %}{{ _section.logo_max_width }}x{% endcapture %}
+    <img src="{{ _section.logo | img_url: image_size }}"
+        srcset="{{ _section.logo | img_url: image_size }} 1x, {{ _section.logo | img_url: image_size, scale: 2 }} 2x"
+        alt="{{ _section.logo.alt | default: shop.name }}">
+  {% else %}
+    <h1>{{ shop.name }}</h1>
+  {% endif %}
+</a>

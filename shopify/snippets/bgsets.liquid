@@ -1,0 +1,10 @@
+{%- assign dataWidths = "180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1950, 2100, 2260, 2450, 2700, 3000, 3350, 3750, 4100" | split: ', ' -%}
+{%- if bg_img != blank -%}
+  {%- for dataWidth in dataWidths -%}{% assign bg_img_width = bg_img.width | append: '' %}{%- if bg_img_width >= dataWidth -%}{% assign imageFilter = dataWidth | append: 'x' %}
+    {{ bg_img | img_url: imageFilter }} {{ dataWidth }}w {{ dataWidth | divided_by: bg_img.aspect_ratio | round }}h,
+    {%- else -%}
+    	{{ bg_img | img_url: 'master' }} {{ bg_img.width }}w {{ bg_img.height }}h,
+    {%- endif -%}
+  {%- endfor -%}
+  {{ bg_img | img_url: 'master' }} {{ bg_img.width }}w {{ bg_img.height }}h
+{%- endif -%}

@@ -1,0 +1,652 @@
+.background-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  img {
+    position: absolute;
+    @include av-mq('mobile') {
+      animation: none !important;
+    }
+  }
+  #top-left {
+    width: 18%;
+    top: 230px;
+    left: 0;
+    animation: ffff 7s infinite alternate-reverse;
+  }
+  #top-right {
+    width: 18%;
+    top: 530px;
+    right: 0;
+    animation: ffff 7s infinite alternate-reverse;
+  }
+  #dot-1 {
+    top: 580px;
+    width: 16px;
+    right: 25%;
+  }
+  #dot-2 {
+    top: 1020px;
+    width: 16px;
+    left: 36%;
+  }
+  #dot-3 {
+    top: 1480px;
+    width: 16px;
+    left: 49%;
+  }
+  #dot-4 {
+    bottom: 290px;
+    width: 16px;
+    left: 28%;
+  }
+  #dot-5 {
+    bottom: 385px;
+    width: 16px;
+    right: 10%;
+  }
+  #bottle-1 {
+    width: 36px;
+    top: 570px;
+    left: 22%;
+    animation: ffff 7s infinite alternate-reverse;
+  }
+  #bottle-2 {
+    width: 36px;
+    top: 610px;
+    left: 37%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #bottle-3 {
+    width: 26px;
+    top: 766px;
+    left: calc(50% - 100px);
+    animation: ffff 7s infinite alternate-reverse;
+  }
+  #bottle-4 {
+    width: 26px;
+    top: 880px;
+    left: 50%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #bottle-5 {
+    width: 26px;
+    top: 688px;
+    left: 8%;
+    animation: ffff 7s infinite alternate-reverse;
+  }
+  #bottle-6 {
+    width: 26px;
+    top: 825px;
+    left: 4%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #bottle-7 {
+    width: 26px;
+    top: 960px;
+    left: 8%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #bottle-8 {
+    width: 35px;
+    top: 1045px;
+    right: 11%;
+    animation: floatingright 7s infinite alternate-reverse;
+  }
+  #bottle-9 {
+    width: 30px;
+    top: 1139px;
+    right: 50%;
+    animation: floatingright 7s infinite alternate-reverse;
+  }
+
+  #fish-x-1 {
+    width: 72px;
+    top: 1300px;
+    right: 53%;
+    animation: floatingright 7s infinite alternate-reverse;
+  }
+  #fish-x-badge-1 {
+    width: 95px;
+    top: 1150px;
+    right: 3%;
+    animation: floatingright 7s infinite alternate-reverse;
+  }
+  #fish-round-badge-1 {
+    width: 140px;
+    top: 1630px;
+    left: 45%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #fish-none-1 {
+    width: 45px;
+    top: 1442px;
+    left: 63%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #fish-none-trans-1 {
+    width: 48px;
+    top: 1725px;
+    left: 4%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #fish-none-trans-2 {
+    width: 45px;
+    top: 1920px;
+    left: 1%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #turtle-1 {
+    width: 57px;
+    top: 1380px;
+    right: 13%;
+    animation: floatingright 7s infinite alternate-reverse;
+  }
+  #spoon-1 {
+    width: 57px;
+    top: 1785px;
+    left: 30%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+  #fork-1 {
+    width: 55px;
+    top: 1380px;
+    left: 20%;
+    animation: floating 7s infinite alternate-reverse;
+  }
+
+  #bottle-10 {
+    bottom: 0;
+    width: 32px;
+    left: 23%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-11 {
+    bottom: 56px;
+    width: 32px;
+    left: 19%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-12 {
+    bottom: 65px;
+    width: 32px;
+    left: 24%;
+  }
+  #bottle-13 {
+    bottom: 34px;
+    width: 32px;
+    left: 15%;
+  }
+  #bottle-14 {
+    bottom: 34px;
+    width: 32px;
+    left: 12%;
+  }
+  #bottle-15 {
+    bottom: 39px;
+    width: 32px;
+    left: 8%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-16 {
+    bottom: 39px;
+    width: 32px;
+    left: 3%;
+  }
+  #bottle-17 {
+    bottom: 87px;
+    width: 32px;
+    left: 7%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-18 {
+    bottom: 87px;
+    width: 32px;
+    left: 11%;
+    animation: floatingbottommini 2s infinite alternate-reverse;
+  }
+  #bottle-19 {
+    bottom: 130px;
+    width: 32px;
+    left: 15%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-20 {
+    bottom: 130px;
+    width: 32px;
+    left: 17%;
+    animation: floatingleftleft 5s infinite alternate-reverse;
+  }
+  #bottle-21 {
+    bottom: 258px;
+    width: 32px;
+    left: 19%;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-22 {
+    bottom: 182px;
+    width: 32px;
+    left: 7%;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #fish-none-trans-3 {
+    bottom: 130px;
+    width: 32px;
+    left: 19%;
+  }
+  #fish-none-trans-4 {
+    bottom: 167px;
+    width: 32px;
+    left: 2%;
+  }
+  #badge-1 {
+    bottom: 203px;
+    width: 44px;
+    left: 12%;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-23 {
+    width: 32px;
+    right: 23%;
+    bottom: 240px;
+  }
+  #bottle-24 {
+    width: 32px;
+    right: 8%;
+    bottom: 185px;
+  }
+  #bottle-25 {
+    width: 32px;
+    right: 14%;
+    bottom: 165px;
+  }
+  #bottle-26 {
+    width: 32px;
+    right: 20%;
+    bottom: 159px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-27 {
+    width: 32px;
+    right: 5%;
+    bottom: 110px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-28 {
+    width: 32px;
+    right: 13%;
+    bottom: 89px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-29 {
+    width: 32px;
+    right: 18%;
+    bottom: 100px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-30 {
+    width: 32px;
+    right: 22%;
+    bottom: 66px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-31 {
+    width: 32px;
+    right: 19%;
+    bottom: 40px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-32 {
+    width: 32px;
+    right: 15%;
+    bottom: 7px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-33 {
+    width: 32px;
+    right: 11%;
+    bottom: 38px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-34 {
+    width: 32px;
+    right: 6%;
+    bottom: 62px;
+    animation: floatingleftright 5s infinite alternate-reverse;
+  }
+  #bottle-35 {
+    width: 32px;
+    right: 0%;
+    bottom: 38px;
+    animation: floatingbottommini 3s infinite alternate-reverse;
+  }
+  #badge-2 {
+    width: 43px;
+    right: 28%;
+    bottom: 10px;
+    animation: floatingbottommini 2s infinite alternate-reverse;
+  }
+  #badge-3 {
+    width: 43px;
+    right: 3%;
+    bottom: 210px;
+    animation: floatingbottommini 5s infinite alternate-reverse;
+  }
+  #fish-none-trans-5 {
+    width: 43px;
+    right: 13%;
+    bottom: 230px;
+  }
+}
+
+
+
+@keyframes ffff {
+    0% {
+        margin-top: 0px
+    }
+
+    100% {
+        margin-top: 50px
+    }
+}
+
+@keyframes floating {
+    0% {
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 0px;
+        margin-bottom: 0px
+    }
+
+    100% {
+        margin-top: 0px;
+        margin-left: -50px;
+        margin-right: 0px;
+        margin-bottom: 0px
+    }
+}
+@keyframes floatingright {
+    0% {
+        margin-top: 50px;
+        margin-right: 50px;
+        margin-left: 0px;
+        margin-bottom: 0px
+    }
+
+    100% {
+        margin-top: 0px;
+        margin-right: -50px;
+        margin-left: 0px;
+        margin-bottom: 0px
+    }
+}
+@keyframes floatingbottom {
+    0% {
+        margin-bottom: 50px;
+        margin-right: 50px;
+        margin-left: 0px;
+        margin-top: 0px
+    }
+
+    100% {
+        margin-bottom: 0px;
+        margin-right: -50px;
+        margin-left: 0px;
+        margin-top: 0px
+    }
+}
+@keyframes floatingbottommini {
+  0% {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-top: 0px
+  }
+
+  100% {
+    margin-bottom: 0px;
+    margin-right: -5px;
+    margin-left: 0px;
+    margin-top: 0px
+  }
+}
+@keyframes floatingleftright {
+  0% {
+    margin-bottom: 0px;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-top: 0px
+  }
+
+  100% {
+    margin-bottom: 0px;
+    margin-right: -10px;
+    margin-left: 0px;
+    margin-top: 0px
+  }
+}
+@keyframes floatingleftleft {
+  0% {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 0px;
+  }
+
+  100% {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: -10px;
+    margin-right: 0px;
+  }
+}
+
+@keyframes bubble {
+    0% {
+        margin-left: 10px
+    }
+
+    100% {
+        margin-left: -10px
+    }
+}
+
+@keyframes twistAnimation {
+    0% {
+        transform: rotate(10deg)
+    }
+
+    100% {
+        transform: rotate(-10deg)
+    }
+}
+
+
+/* WideScreen */
+  
+@include av-mq('widescreen') {
+  .background-element {
+    img[data-material="bottle"] {
+      width: 3% !important;
+    }
+    img[data-material="badge"] {
+      width: 5% !important;
+    }
+    img[data-material="fish-none"] {
+      width: 4%;
+    }
+  }
+}
+
+/* Mobile */
+
+@include av-mq('mobile') {
+  .background-element {
+    #top-left {
+      width: 33%;
+      top: 65px;
+      left: 0;
+    }
+    #top-right {
+      width: 33%;
+      top: 343px;
+    }
+    #dot-1 {
+      top: 445px;
+      width: 16px;
+      right: 40%;
+    }
+    #bottle-1 {
+      width: 38px;
+      top: 471px;
+      left: 44%;
+    }
+    #bottle-2 {
+      width: 36px;
+      top: 487px;
+      left: 83%;
+    }
+    #bottle-3 {
+      top: 629px;
+      left: calc(100% - 36px);
+    }
+    #bottle-5 {
+      width: 26px;
+      top: 528px;
+      left: 1%;
+    }
+    #bottle-6 {
+      top: 725px;
+      left: 4%;
+    }
+    #dot-2 {
+      width: 16px;
+      top: 834px;
+      left: 50%;
+    }
+    #fish-x-badge-1 {
+      width: 95px;
+      top: 950px;
+      right: 17%;
+    }
+    #turtle-1 {
+      top: 1250px;
+      right: 13%;
+    }
+    #fish-x-1 {
+      top: 1100px;
+      right: 80%;
+    }
+    #fork-1 {
+      top: 1303px;
+      left: 35%;
+    }
+    #fish-none-1 {
+      top: 1212px;
+      left: 15%;
+    }
+    #dot-3 {
+      top: 1320px;
+      width: 16px;
+      left: 87%;
+    }
+    #spoon-1 {
+      top: 1718px;
+      left: 30%;
+    }
+    #fish-none-trans-1 {
+      top: 1625px;
+      left: 4%;
+    }
+    #fish-none-trans-2 {
+      display: none;
+    }
+    #badge-1 {
+      bottom: 70px;
+      width: 44px;
+      left: 12%;
+    }
+    #bottle-10 {
+      bottom: 0;
+      width: 32px;
+      right: 4%;
+      left: auto;
+    }
+    #bottle-15 {
+      width: 32px;
+      left: 66%;
+    }
+    #bottle-12 {
+      bottom: 87px;
+      width: 32px;
+      left: 80%;
+    }
+    #bottle-14 {
+      bottom: 34px;
+      width: 32px;
+      left: 45%;
+    }
+    #bottle-13 {
+      bottom: 8px;
+      width: 32px;
+      left: 26%;
+    }
+    #bottle-16 {
+      bottom: -29px;
+      width: 32px;
+      left: 3%;
+    }
+    #bottle-11 {
+      bottom: 56px;
+      width: 32px;
+      left: 52%;
+    }
+    #fish-none-trans-3 {
+      bottom: 155px;
+      width: 32px;
+      left: 71%;
+    }
+    #fish-none-trans-4 {
+      bottom: 65px;
+      width: 32px;
+      left: 26%;
+    }
+    #bottle-18 {
+      bottom: 211px;
+      width: 32px;
+      left: 51%;
+    }
+    #bottle-19 {
+      width: 32px;
+      left: 39%;
+    }
+    #bottle-22 {
+      bottom: 182px;
+      width: 32px;
+      left: 86%;
+    }
+    #dot-4 {
+      bottom: 290px;
+      width: 16px;
+      left: 10%;
+    }
+    #bottle-21 {
+      bottom: 213px;
+      width: 32px;
+      left: 23%;
+    }
+    #dot-5 {
+      bottom: 74px;
+      width: 16px;
+      right: 38%;
+    }
+
+
+    #bottle-4 {
+      display: none;
+    }
+  }
+}

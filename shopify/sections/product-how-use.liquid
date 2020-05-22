@@ -1,0 +1,81 @@
+{%- assign _section = section.settings -%}
+<div class="product-how-use">
+  <div class="how-use-inner">
+    {%- if _section.title != blank -%}
+      <h2 class="how-use-title">{{ _section.title }}</h2>
+    {%- endif -%}
+    {%- if _section.detail != blank -%}
+      <p class="how-use-sub-title">{{ _section.detail }}</p>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="how-use-items">
+        <div class="how-use-items-inner">
+          {%- for block in section.blocks -%}
+            {%- assign _block = block.settings -%}
+            <div class="how-use-item">
+              <div class="how-use-item--info">
+                <div class="how-use-item--title">{{ _block.title }}</div>
+                <div class="how-use-item--detail">{{ _block.detail }}</div>
+              </div>
+              {%- if _block.item_img != blank -%}
+                <div class="how-use-item--image">
+                  <img src="{{ _block.item_img | img_url: 'master' }}" />
+                </div>
+              {%- endif -%}
+              <div class="how-use-item--note">
+                <span class="icon"><img src="{{ 'check.png' | asset_url }}"></span>
+                <div class="how-use-item--text">{{ _block.info }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Product How to use",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "How to use"
+      },
+      {
+        "type": "textarea",
+        "id": "detail",
+        "label": "Detail"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "in-item",
+        "name": "Product in Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "detail",
+            "label": "Detail"
+          },
+          {
+            "type": "image_picker",
+            "id": "item_img",
+            "label": "Item Image"
+          },
+          {
+            "type": "textarea",
+            "id": "info",
+            "label": "Information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

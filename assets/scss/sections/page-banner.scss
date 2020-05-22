@@ -1,0 +1,151 @@
+.page-banner {
+  position: relative;
+  .page-banner--background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #e2edff;
+    height: calc(100% - 100px);
+    width: 100%;
+  }
+  .page-banner--inner {
+    position: relative;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #d4d4d4;
+    padding-top: 50px;
+  }
+  .page-banner--inner {
+    display: flex;
+    align-items: center;
+  }
+  .banner--image {
+    width: 51%;
+    padding-left: 50px;
+  }
+  .banner--content {
+    width: 49%;
+  }
+  .banner-content--inner {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .banner--title {
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .banner--detail {
+    font-size: 20px;
+    line-height: 1.8;
+  }
+  .content-arrow {
+    display: inline-block;
+    margin-top: 50px;
+    img {
+      width: auto;
+      height: 50px;
+    }
+  }
+  .banner--badge-image {
+    position: absolute;
+    width: 150px;
+    bottom: 0;
+    right: 50px;
+    font-size: 0;
+  }
+
+  /* Wide Screen */
+
+  @include av-mq('widescreen') {
+    .banner-content--inner {
+      max-width: 500px;
+    }
+    .banner--title {
+      font-size: 100px;
+    }
+    .banner--detail {
+      font-size: 34px;
+    }
+    .content-arrow {
+      img {
+        height: 70px;
+      }
+    }
+    .banner--badge-image {
+      width: 200px;
+    }
+  }
+
+  /* Tablet */
+
+  @include av-mq('tablet') {
+    .page-banner--background {
+      height: calc(100% - 70px);
+    }
+    .page-banner--inner {
+      padding: 40px 0 50px;
+    }
+    .banner-content--inner {
+      max-width: 300px;
+    }
+    .banner--title {
+      font-size: 50px;
+    }
+    .content-arrow {
+      margin-top: 25px;
+      img {
+        height: 30px;
+      }
+    }
+    .banner--badge-image {
+      width: 100px;
+    }
+  }
+
+  /* Mobile */
+
+  @include av-mq('mobile') {
+    .page-banner--background {
+      height: calc(100% - 50px);
+    }
+    .page-banner--inner {
+      display: block;
+      padding: 15px 15px 40px;
+      border-bottom: none;
+    }
+    .banner--image {
+      width: 100%;
+      padding: 0;
+    }
+    .banner--content {
+      width: 100%;
+      padding: 25px 15px 60px;
+      text-align: center;
+    }
+    .banner-content--inner {
+      max-width: none;
+    }
+    .banner--title {
+      font-size: 35px;
+      margin-bottom: 5px;
+      br {
+        display: none;
+      }
+    }
+    .banner--detail {
+      font-size: 14px;
+    }
+    .content-arrow {
+      margin-top: 40px;
+      img {
+        height: 30px;
+      }
+    }
+    .banner--badge-image {
+      bottom: 30px;
+      width: 75px;
+      right: 15px;
+    }
+  }
+}

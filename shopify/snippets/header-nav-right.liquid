@@ -1,0 +1,18 @@
+<!-- snippets/header-nav-right.liquid -->
+
+<ul class="inline header_section__container__right">
+  <li class="header_section__desktop">
+    <a class="text_uppercase" href="#" data-cart-toggle>
+      cart (<span data-cart-view="" rv-text="cart.item_count">0</span>)
+    </a>
+  </li>
+  <li>
+    <a class="text_uppercase" href="/account">
+      {% if _section.header_search_user_icons %}
+        <img src="{{ 'user_circle.svg' | asset_url }}"/>
+      {% else %}
+        Login
+      {% endif %}
+    </a>
+  </li>
+</ul>

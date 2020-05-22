@@ -1,0 +1,58 @@
+{%- assign _section = section.settings -%}
+<div class="product-benefits product-container">
+  <div class="benefits-inner">
+    {%- if _section.title != blank -%}
+      <h2 class="benefits-title">{{ _section.title }}</h2>
+    {%- endif -%}
+    {%- if _section.detail != blank -%}
+      <p class="benefits-sub-title">{{ _section.detail }}</p>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="benefits-items">
+        <div class="benefits-items-inner">
+          {%- for block in section.blocks -%}
+            {%- assign _block = block.settings -%}
+            <div class="benefits-item">
+              <div class="benefits-item--inner">
+                <img src="{{ 'checker.png' | asset_url }}" />
+                <div class="benefits-item--title">{{ _block.title | newline_to_br }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Benefits Wrapper",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Product benefits"
+      },
+      {
+        "type": "textarea",
+        "id": "detail",
+        "label": "Detail",
+        "default": "We have taken out the bad stuff and only left in what your smile - and the planet - need to stay healthy!"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "benefit-item",
+        "name": "Benefit Item",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Benefit Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

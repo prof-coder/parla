@@ -1,0 +1,73 @@
+.why-more {
+  padding-bottom: 100px;
+  background: linear-gradient(to bottom, #e2edff 1%, #ffffff 66% );
+  strong {
+    font-size: 22px;
+    margin-top: 10px;
+    display: block;
+  }
+}
+.why-more--inner {
+  text-align: center;
+  h2 {
+    font-size: 45px;
+  }
+}
+
+
+.why-more--detail {
+  margin-top: 17px;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.why-earn-difference {
+  padding: 20px 0 100px;
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+/* Wide Screen */
+
+@include av-mq('widescreen') {
+  .why-more--inner {
+    font-size: 63px;
+  }
+  .why-more--detail {
+    font-size: 22px;
+  }
+  .why-earn-difference {
+    p {
+      font-size: 25px;
+    }
+    strong {
+      font-size: 30px;
+    }
+  }
+}
+
+/* Mobile */
+
+@include av-mq('mobile') {
+  .why-more {
+    padding-bottom: 375px;
+    background: #e2edff;
+  }
+  .why-earn-difference {
+    background: linear-gradient(to bottom, #e2edff 1%, #ffffff 66%);
+  }
+  .why-more--inner {
+    h2 {
+      font-size: 27px;
+    }
+    .why-more--detail {
+      padding: 0 30px;
+      br {
+        display: none;
+      }
+    }
+  }
+  .why-earn-difference {
+    border-bottom: 2px solid #000;
+  }
+}

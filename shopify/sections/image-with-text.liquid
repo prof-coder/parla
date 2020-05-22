@@ -1,0 +1,185 @@
+<!-- sections/image-with-text.liquid -->
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+{%- assign settings = section.settings -%}
+
+<section class="section image-with-text is-full">
+  {% if settings.image_alignment != 'background' %}
+    <div class="container">
+  {% else %}
+    <div class="container img-text-bgimg">
+  {% endif %}
+
+    {% capture image_layout %}
+      <div class="image-with-text__image">
+        <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: settings.image %}" style="padding-bottom: calc(1 / {{ settings.image.aspect_ratio }} * 100% ); background-image: url('{{ settings.image | img_url: '300x' }}');"></div>
+      </div>
+    {% endcapture %}
+
+    {% capture block_title %}
+      {% if settings.title != blank %}
+        <h2>{{ settings.title | escape }}</h2>
+      {% endif %}
+    {% endcapture %}
+
+    {% capture block_text %}
+      {% if settings.text != blank %}
+        <p>{{ settings.text }}</p>
+      {% endif %}
+    {% endcapture %}
+
+    {% if settings.image_alignment == 'left' or settings.image_alignment == 'background' %}
+      {{ image_layout }}
+    {% endif %}
+
+    {%- if settings.gap_image != blank -%}
+      <div class="gap_image">
+        <img src="{{ settings.gap_image | img_url: 'master' }}" />
+      </div>
+    {%- endif -%}
+
+    <div class="image-with-text__text {{settings.text_alignment}}">
+      <div>
+        {% if settings.image_alignment == 'background' %}
+          {{ block_text }}
+          {{ block_title }}
+        {% else %}
+          {{ block_title }}
+          {{ block_text }}
+        {% endif %}
+
+        {%- assign _product_handle = settings.product -%}
+        {%- assign _product = all_products[_product_handle] -%}
+        {%- if _product == blank -%}
+          {% if settings.button_label != blank and settings.button_link != blank %}
+            <a href="{{ settings.button_link }}" class="btn button is-link btn--blue">
+              {{ settings.button_label | escape }}
+            </a>
+          {% endif %}
+        {% else %}
+          {% if _product.available %}
+            <a href="{{ _product.url }}" class="btn button is-link btn--blue">
+              {{ settings.button_label | escape }}
+            </a>
+          {% else %}
+            <a href="#" class="BIS_trigger btn button is-link btn--dark disabled" data-product-data='{{ _product | json | escape }}'>
+              {{ settings.button_label | escape }}
+            </a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if settings.image_alignment == 'right' %}
+      {{ image_layout }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Image with text",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "background",
+            "label": "Background"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Gap Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "gap_image",
+        "label": "Gap Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "has-text-centered",
+        "options": [
+          {
+            "value": "has-text-left",
+            "label": "Left"
+          },
+          {
+            "value": "has-text-centered",
+            "label": "Center"
+          },
+          {
+            "value": "has-text-right",
+            "label": "Right"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text (Standard)",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

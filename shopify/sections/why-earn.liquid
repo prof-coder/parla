@@ -1,0 +1,132 @@
+{%- assign _section = section.settings -%}
+
+<section class="why-earn-section">
+  <div class="why-earn--inner">
+    <div class="why-sad">
+      <div class="why-sad--inner">
+        <div class="why-sad--content">
+          {% if _section.sad_title != blank %}
+            <h2>{{ _section.sad_title | newline_to_br }}</h2>
+          {% endif %}
+
+          {% if _section.sad_sub_title != blank %}
+            <h5>{{ _section.sad_sub_title }}</h5>
+          {% endif %}
+        </div>
+        <div class="why-sad--image">
+          <div class="bgimg lazyload hidden-xs" data-bgset="{% include 'responsive-bg-image', image: _section.sad_image %}" style="padding-bottom: calc(1 / {{ _section.sad_image.aspect_ratio }} * 100% )"></div>
+
+          <div class="visible-xs-block" style="padding-bottom: calc(1 / {{ _section.sad_image_mobile.aspect_ratio }} * 100% ); background-size: cover; background-repeat: no-repeat; background-image: url('{{ _section.sad_image_mobile | img_url: 'master'  }}')"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-tube" id="tube_area">
+      {%- include 'why-background-element' -%}
+      
+      <div class="why-tube--head">
+        <p>Did you also know that</p>
+
+        <h1>1.5 billion</h1>
+
+        <p>tubes of toothpaste go to landfill or into the ocean each year?</p>
+      </div>
+      <div class="why-tube--content">
+        <div class="why-tube--item">
+          <div class="why-tube-item-inner">
+            <div class="tube-item--title">
+              500-700
+              <br/>
+              Years
+            </div>
+            <div class="tube-item--detail">
+              Plastic in toothpaste tubes takes
+              <br/>
+              500-700 years to dissolve
+            </div>
+          </div>
+        </div>
+        <div class="why-tube--item right">
+          <div class="why-tube-item-inner">
+            <div class="tube-item--title">
+              Killing
+              <br/>
+              Animals
+            </div>
+            <div class="tube-item--detail">
+              Plastic in toothpaste tubes
+              <br/>
+              is killing animals and ocean life
+            </div>
+          </div>
+        </div>
+        <div class="why-tube--item">
+          <div class="why-tube-item-inner">
+            <div class="tube-item--title">
+              Enter our
+              <br/>
+              FoodChain
+            </div>
+            <div class="tube-item--detail">
+              Plastic in toothpaste tubes
+              <br/>
+              is entering our food chain.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-more">
+        <div class="why-more--inner">
+          <h2>
+            More plastic
+            <br />
+            than fish in the ocean
+          </h2>
+          <div class="why-more--detail">
+            By 2050, it is forecast by the Ellen MacArthur Foundation
+            <br>
+            that there will be more plastic in the ocean than fish
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="why-earn-difference">
+    <p>Let's make a difference with</p>
+    <strong>#onesmallchange...</strong>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Why Earn",
+    "settings": [
+      {
+        "type": "header",
+        "content": "bad (sad)"
+      },
+      {
+        "type": "image_picker",
+        "id": "sad_image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "sad_image_mobile",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "textarea",
+        "id": "sad_title",
+        "label": "Heading",
+        "default": "Packing"
+      },
+      {
+        "type": "textarea",
+        "id": "sad_sub_title",
+        "label": "Sub Heading"
+      }
+    ]
+  }
+{% endschema %}

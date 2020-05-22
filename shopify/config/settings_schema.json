@@ -1,0 +1,196 @@
+[
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "primaty_color",
+        "label": "Primary Color",
+        "default": "#c4cdd5",
+        "info": "Principal color for Buttons, inputs, etc."
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Text",
+        "default": "#161d25"
+      },
+      {
+        "type": "color",
+        "id": "color_main_bg",
+        "label": "Background",
+        "default": "#fff"
+      }
+    ]
+  },
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "newsletter_active",
+        "label": "Activate Newsletter subscription",
+        "default": true
+      },
+      {
+        "type":      "radio",
+        "id":        "newsletter_type",
+        "label":     "Type of Newsletter subscription",
+        "options": [
+          { "value": "mailchimp", "label": "Mailchimp" },
+          { "value": "klaviyo", "label": "Klaviyo" }
+        ],
+        "default":   "mailchimp"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_id",
+        "label": "ID",
+        "info": "This field is required"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_success",
+        "label": "Success message",
+        "default": "You are subscribed, Thanks!"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_error",
+        "label": "Error message",
+        "default": "Please enter a valid email address!"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "font_default_active",
+        "label": "Use [Cerebri Sans](https://www.myfonts.com/fonts/hanken-designco/cerebri-sans/) font"
+      },
+      {
+        "type": "checkbox",
+        "id": "icons_feather_active",
+        "label": "Use [Feather](https://feathericons.com//) icons"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "default": "helvetica_n4",
+        "label": "Headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "default": "helvetica_n4",
+        "label": "Body text"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing image"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+      },
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube link"
+      },
+      {
+         "type": "select",
+         "id": "footer_social_icons_size",
+         "options": [
+            { "value": "20px", "label": "Small"},
+            { "value": "30px", "label": "Medium"},
+            { "value": "40px", "label": "Big"}
+         ],
+         "label": "Footer Size of Icons"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  }
+]

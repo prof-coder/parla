@@ -1,0 +1,59 @@
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s all;
+  z-index: 20;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.video-modal--close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #FFF;
+  display: block;
+  z-index: 20;
+  cursor: pointer;
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+.video-modal--overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #0009;
+}
+
+.video-modal--inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.video-modal--elem {
+  padding-bottom: calc(100% / 16 * 9 );
+  height: 0;
+  position: relative;
+  width: 100%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

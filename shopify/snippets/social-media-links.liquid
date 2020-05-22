@@ -1,0 +1,32 @@
+<!-- snippets/social-media-links.liquid -->
+
+<ul class="social_media_links">
+  {% if settings.social_facebook_link != blank %}
+    <li>
+      <a href="{{ settings.social_facebook_link }}" target="_blank">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_twitter_link != blank %}
+    <li>
+      <a href="{{ settings.social_twitter_link }}" target="_blank">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_pinterest_link != blank %}
+    <li>
+      <a href="{{ settings.social_pinterest_link }}" target="_blank">
+        <i class="fa fa-pinterest" aria-hidden="true"></i>
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_instagram_link != blank %}
+    <li>
+      <a href="{{ settings.social_instagram_link }}" target="_blank">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+      </a>
+    </li>
+  {% endif %}
+</ul>

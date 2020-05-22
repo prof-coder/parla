@@ -1,0 +1,79 @@
+<div class="about-members" id="about-members">
+  <div class="about-members--inner">
+    {%- for block in section.blocks -%}
+      {%- assign _block = block.settings -%}
+      <div class="member-item{% if _block.image_alignment == 'right' %} member-item-reverse{% endif %}">
+        <div class="member-item--image">
+          {%- if _block.item_img != blank -%}
+            <img
+              class="lazyload full-width"
+              src="{{ _block.item_img | img_url: image_size }}"
+              srcset="{% include 'responsive-bg-image', image: _block.item_img %}"
+              alt="{{ _block.item_img.alt }}"
+            />
+          {%- endif -%}
+        </div>
+        <div class="member-item--content text-center">
+          <div class="member-item-content--inner">
+            {%- if _block.title != blank -%}
+              <div class="member-item--title">
+                {{ _block.title }}
+              </div>
+            {%- endif -%}          
+            {%- if _block.detail != blank -%}
+              <div class="member-item--detail">
+                {{ _block.detail }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Members",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Member Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "item_img",
+            "label": "Photo"
+          },
+          {
+            "type": "select",
+            "id": "image_alignment",
+            "label": "Image alignment",
+            "default": "right",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "detail",
+            "label": "Detail"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

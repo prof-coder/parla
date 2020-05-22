@@ -1,0 +1,19 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Responsive
+ * ----------------------------------------------------------------------------
+ */
+
+@media #{$phone-up-media} {
+  .hidden-phone-and-up {
+    display: none !important;
+  }
+}
+
+@media #{$phone-media} {
+  .hidden-phone {
+    display: none !important;
+  }
+}
+
+img[data-sizes="auto"] { display: block; width: 100%; }

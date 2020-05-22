@@ -1,0 +1,26 @@
+
+<div class="cart-page">
+  {% if cart.item_count > 0 %}
+    {% include 'cart-view' %}
+  {% else %}
+    <div class="cart-view">
+      <div class="cart-view__block">
+          <div class="cart-view__block-inner">
+              <div class="cart-view__header">
+                  <div class="container">
+                      <p class="cart-view__headline">My Cart</p>
+                  </div>                        
+              </div>
+          </div>
+      </div>
+      <div class="cart-view__empty">
+        <div class="container">
+
+          <div class="cart-view__block" rv-show="cart.items | lt 1 ">
+              <p>Your cart is empty. <a href="/products">Shop Now</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

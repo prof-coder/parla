@@ -1,0 +1,74 @@
+{%- assign _section = section.settings -%}
+
+<section class="image-text why-happy-after">
+  <div class="image-text--inner{% if _section.image_alignment == 'right' %} image-text-reverse{% endif %}">
+    <div class="image-text-image">
+      <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: _section.image %}" style="padding-bottom: calc(1 / {{ _section.image.aspect_ratio }} * 100% ); background-image: url('{{ _section.image | img_url: '300x' }}');"></div>
+    </div>
+    <div class="image-text-content">
+      <div class="image-text-content--inner">
+        {% if _section.title != blank %}
+          <h2>{{ _section.title | escape }}</h2>
+        {% endif %}
+
+        <div class="image-text-detail-wrapper">
+          {% if _section.text != blank %}
+            <div class="image-text-detail">{{ _section.text | newline_to_br }}</div>
+          {% endif %}
+
+          {% if _section.second_text != blank %}
+            <div class="image-text-detail">{{ _section.second_text | newline_to_br }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="why-after--dot hidden-xs hidden-sm">
+      <img src="{{ 'dot.png' | asset_url }}" />
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Why Happy",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "image_alignment",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "textarea",
+        "id": "second_text",
+        "label": "Second Column Text"
+      }
+    ]
+  }
+{% endschema %}

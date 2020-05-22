@@ -1,0 +1,22 @@
+{% capture a_private_return %}
+{% endcapture %}
+
+{%- capture general_width_class -%}
+  {%- unless settings.general_width_type == 'none' -%}
+    {{ settings.general_width_type }}
+  {%- endunless -%}
+{%- endcapture -%}
+{%- assign general_width_class = general_width_class | strip | replace: a_private_return, '' -%}
+
+{%- capture general_width_padding -%}
+  {%- if settings.general_width_type == 'container is-fluid' -%}
+    margin-left: {{ settings.general_width_padding }}px;
+    margin-right: {{ settings.general_width_padding }}px;
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign general_width_padding_style = general_width_padding | strip | replace: a_private_return, '' -%}
+
+{%- assign general_dom_setting = false -%}
+{%- if general_width_class != blank or general_width_padding_style != blank -%}
+  {%- assign general_dom_setting = true -%}
+{%- endif -%}

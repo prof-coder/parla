@@ -1,0 +1,149 @@
+{%- assign class_current = 'current' -%}
+{%- assign class_has_children = 'has-dropdown' -%}
+{%- assign linklist_links = linklists[_section.menu].links -%}
+
+{%- assign dropdowns_meta = '' -%}
+{%- if _blocks.size > 0 -%}
+  {%- for block in _blocks -%}
+    {%- assign current_block = block.settings -%}
+
+    {%- assign link_handle = current_block.link_handle -%}
+    {%- assign nav_1 = current_block.nav_1 -%}
+    {%- assign nav_2 = current_block.nav_2 -%}
+    {%- assign nav_3 = current_block.nav_3 -%}
+    {%- assign nav_4 = current_block.nav_4 -%}
+    {%- assign box_link = current_block.box_link -%}
+    {%- assign box_title = current_block.box_title -%}
+    {%- assign box_content = current_block.box_content -%}
+    {%- assign _image = '' -%}
+    {%- assign box_image = '' -%}
+
+    {%- if current_block.image != blank -%}
+      {%- assign _image = current_block.image | img_url: '1126x' -%}
+    {%- endif -%}
+
+    {%- assign _image_align = current_block.align_image -%}
+
+    {%- if current_block.box_image != blank -%}
+      {%- assign box_image = current_block.box_image | img_url: '80x' -%}
+    {%- endif -%}
+
+    {%- assign dropdowns_meta = dropdowns_meta | append: 'linkHandle:' | append: link_handle | append: '||' | append: 'largeImage:' | append: _image | append: '||' | append: 'largeImageAlign:' | append: _image_align | append: '||' | append: 'nav-1:' | append: nav_1 | append: '||' | append: 'nav-2:' | append: nav_2 | append: '||' | append: 'nav-3:' | append: nav_3 | append: '||' | append: 'nav-4:' | append: nav_4 | append: '||' | append: 'boxLink:' | append: box_link | append: '||' | append: 'boxImage:' | append: box_image | append: '||' | append: 'boxTitle:' | append: box_title | append: '||' | append: 'boxContent:' | append: box_content | append: '@@' -%}
+
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if linklist_links.size > 0 -%}
+  <nav class="nav">
+    <ul>
+      {%- for link in linklist_links -%}
+        {%- assign link_handle = link.handle -%}
+
+        {%- assign classes = '' -%}
+
+        {%- if dropdowns_meta contains link_handle -%}
+          {%- assign classes = classes | append: class_has_children -%}
+        {%- endif -%}
+
+        {%- if link.active -%}
+          {%- assign classes = classes | append: ' ' | append: class_current -%}
+        {%- endif -%}
+
+        <li {% if classes != empty %} class="{{ classes }}"{% endif %}>
+          <a href="{{ link.url }}">{{ link.title }}<span class="" aria-expanded="false"></span></a>
+
+          {%- if classes contains class_has_children -%}
+            {%- assign start_split = 'linkHandle:' | append: link_handle -%}
+
+            {%- assign array_meta = dropdowns_meta | split: start_split | last | split: '@@' | first | split: '||' -%}
+
+            {%- assign large_image = array_meta[1] | replace: 'largeImage:', '' -%}
+            {%- assign large_image_align = array_meta[2] | replace: 'largeImageAlign:', '' -%}
+            {%- assign nav_1 = array_meta[3] | replace: 'nav-1:', '' -%}
+            {%- assign nav_2 = array_meta[4] | replace: 'nav-2:', '' -%}
+            {%- assign nav_3 = array_meta[5] | replace: 'nav-3:', '' -%}
+            {%- assign nav_4 = array_meta[6] | replace: 'nav-4:', '' -%}
+            {%- assign box_link = array_meta[7] | replace: 'boxLink:', '' -%}
+            {%- assign box_image = array_meta[8] | replace: 'boxImage:', '' -%}
+            {%- assign box_title = array_meta[9] | replace: 'boxTitle:', '' -%}
+            {%- assign box_content = array_meta[10] | replace: 'boxContent:', '' -%}
+
+            {%- assign dropdown_1_links = linklists[nav_1].links -%}
+            {%- assign dropdown_2_links = linklists[nav_2].links -%}
+            {%- assign dropdown_3_links = linklists[nav_3].links -%}
+            {%- assign dropdown_4_links = linklists[nav_4].links -%}
+
+            {% capture large_image_block %}
+              {%- if large_image != empty -%}
+                <div class="nav__dropdown-image" style="background-image: url({{ large_image }});" data-image="{{ large_image }}">
+                </div><!-- /.nav__dropdown-image -->
+              {%- endif -%}
+            {% endcapture %}
+
+            <div class="nav__dropdown">
+              <div class="nav__dropdown-inner">
+                {%- if large_image_align == 'left' -%}
+                  {{ large_image_block }}
+                {%- endif -%}
+
+                {%- if dropdown_1_links.size > 0 or dropdown_2_links.size > 0 or dropdown_3_links.size > 0 or dropdown_4_links.size > 0 -%}
+                  <div class="nav__dropdown-cols">
+                    {%- if dropdown_1_links.size > 0 or dropdown_3_links.size > 0 -%}
+                      <div class="nav__dropdown-col">
+                        <ul>
+                          {%- if dropdown_1_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with title: linklists[nav_1].title, dropdown_links: dropdown_1_links -%}
+                          {%- endif -%}
+
+                          {%- if dropdown_3_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with title: linklists[nav_3].title, dropdown_links: dropdown_3_links -%}
+                          {%- endif -%}
+                        </ul>
+                      </div><!-- /.nav__dropdown-col -->
+                    {%- endif -%}
+
+                    {%- if dropdown_2_links.size > 0 or dropdown_4_links.size > 0 -%}
+                      <div class="nav__dropdown-col">
+                        <ul>
+                          {%- if dropdown_2_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with title: linklists[nav_2].title, dropdown_links: dropdown_2_links -%}
+                          {%- endif -%}
+
+                          {%- if dropdown_4_links.size > 0 -%}
+                            {%- include 'dropdown-menu' with title: linklists[nav_4].title, dropdown_links: dropdown_4_links -%}
+                          {%- endif -%}
+                        </ul>
+                      </div><!-- /.nav__dropdown-col -->
+                    {%- endif -%}
+                  </div><!-- /.nav__dropdown-cols -->
+                {%- endif -%}
+
+                {%- if box_link != empty or box_image != empty or box_title != empty or box_content != empty -%}
+                  <a {% if box_link != empty %}href="{{box_link}}"{% endif %} class="nav__dropdown-box">
+                    {%- if box_image != empty -%}
+                      <img src="{{ box_image }}" alt="" />
+                    {%- endif -%}
+
+                    {%- if box_title != empty -%}
+                      <h6>{{ box_title }}</h6>
+                    {%- endif -%}
+
+                    {%- if box_content != empty -%}
+                      <p>{{ box_content }}</p>
+                    {%- endif -%}
+                  </a><!-- /.nav__dropdown-box -->
+                {%- endif -%}
+
+                {%- if large_image_align == 'right' -%}
+                  {{ large_image_block }}
+                {%- endif -%}
+
+              </div><!-- /.nav__dropdown-inner -->
+            </div><!-- /.nav__dropdown -->
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+
+    </ul>
+  </nav>
+{%- endif -%}

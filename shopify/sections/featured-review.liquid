@@ -1,0 +1,80 @@
+<!-- sections/image-with-text.liquid -->
+
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+{%- assign _section = section.settings -%}
+
+<section class="section is-full featured-review">
+  <div class="featured-review--inner">
+    <div class="featured-review--custom-background"></div>
+    <div class="featured-review--content">
+      <div class="featured-review--content-inner">
+        <div class="featured-review--content-wrapper">
+          {% if _section.text != blank %}
+            <div class="review_detail">{{ _section.text }}</div>
+          {% endif %}
+          <div class="author-content">
+            {% if _section.author != blank %}
+              <div class="author_name">{{ _section.author }}</div>
+            {% endif %}
+            {% if _section.author_detail != blank %}
+              <div class="author_detail">{{ _section.author_detail }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if _section.image != blank %}
+      <div class="featured-review--image">
+        <div class="bgimg lazyload" data-bgset="{% include 'responsive-bg-image', image: _section.image %}" style="padding-bottom: calc(1 / {{ _section.image.aspect_ratio }} * 100% ); background-image: url('{{ _section.image | img_url: '300x' }}');"></div>
+      </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Featured Review",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Review Content"
+      },
+      {
+        "type": "text",
+        "id": "author",
+        "label": "Author Name"
+      },
+      {
+        "type": "text",
+        "id": "author_detail",
+        "label": "Author Detail"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Review",
+        "category": "Review"
+      }
+    ]
+  }
+{% endschema %}

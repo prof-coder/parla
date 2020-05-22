@@ -1,0 +1,142 @@
+.product-whatout {
+  .whatout-inner {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .whatout-items-inner {
+    margin: 50px -15px 0;
+    font-size: 0;
+    text-align: left;
+  }
+  .whatout-title {
+    font-size: 30px;
+  }
+  .whatout-item {
+    display: inline-block;
+    width: 33.33%;
+    padding: 0 15px;
+  }
+  .whatout-item--link {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+    color: #000;
+    transition: 0.3s all;
+    &:hover {
+      color: #3c73ce;
+      .icon {
+        color: #849fcc;
+      }
+    }
+  }
+  .whatin-item--image {
+    width: 45px;
+    margin-right: 25px;
+    text-align: center;
+  }
+  .whatout-item--info {
+    width: calc(100% - 70px);
+    padding: 20px 0;
+  }
+  .whatout-item--title {
+    display: block;
+    position: relative;
+    .icon {
+      font-size: 0;
+      position: absolute;
+      top: 4px;
+      right: 0;
+      width: auto;
+      height: auto;
+      color: #b6b6b5;
+      transition: 0.3s all;
+      svg {
+        display: inline-block;
+        width: 16px;
+        height: auto;
+        vertical-align: top;
+      }
+    }
+  }
+
+  /* Wide Screen */
+
+  @include av-mq('widescreen') {
+    .whatout-inner {
+      padding: 80px 100px;
+    }
+    .whatout-title {
+      font-size: 45px;
+    }
+    .whatout-sub-title {
+      font-size: 22px;
+    }
+    .whatin-item--image {
+      width: 55px;
+      margin-right: 35px;
+      img {
+        width: auto;
+        margin: auto;
+      }
+    }
+    .whatout-item--info {
+      width: calc(100% - 70px);
+    }
+  }
+
+  /* Tablet */
+
+  @include av-mq('tablet') {
+    .whatout-item {
+      width: 50%;
+      vertical-align: top;
+    }
+    .whatin-item--image {
+      margin-right: 20px;
+    }
+    .whatout-item--info {
+      padding: 15px 0;
+      width: calc(100% - 60px);
+    }
+    .whatout-item--title {
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+
+  /* Mobile */
+
+  @include av-mq('mobile') {
+    .whatout-items-inner {
+      margin-top: 20px;
+    }
+    .whatout-inner {
+      padding: 40px 20px;
+    }
+    .whatout-title {
+      font-size: 25px;
+      letter-spacing: 0;
+      margin-bottom: 5px;
+    }
+    .whatout-item {
+      width: 100%;
+    }
+    .whatin-item--image {
+      width: 38px;
+      margin-right: 20px;
+    }
+    .whatout-item--info {
+      width: calc(100% - 58px);
+      padding: 17px 0;
+    }
+    .whatout-item--title {
+      p {
+        font-size: 12px;
+      }
+      .icon {
+        top: 2px;
+      }
+    }
+  }
+}

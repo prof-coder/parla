@@ -1,0 +1,154 @@
+<!-- sections/home.liquid -->
+
+<div class="global_carousel" id="home_carousel">
+  {% for block in section.blocks %}
+  <div class="global_carousel__element">
+    <div class="global_carousel__element__content {{ block.settings.slide_aligment }}">
+      <div class="global_carousel__element__content__subtitle">
+        {{ block.settings.slide_subtitle }}
+      </div>
+      <div class="global_carousel__element__content__title">
+        {{ block.settings.slide_title }}
+      </div>
+      <div class="global_carousel__element__content__description">
+        {{ block.settings.slide_description }}
+      </div>
+      <div class="global_carousel__element__content__cta">
+        <a class="btn" href="{{ block.settings.slide_cta_link }}">{{ block.settings.slide_cta_text }}</a>
+      </div>
+    </div>
+    <div class="global_carousel__element__background" style="background-image: url({{ block.settings.slide_image | img_url: '1400x' }})"></div>
+  </div>
+  {% endfor %}
+</div>
+
+
+<!-- CONTENT SECTIONS -->
+<div class="content_section black_block">
+  <div class="vertical-aligment">
+    <div class="black_block__title">
+      Custom Block Placeholder
+    </div>
+    <div class="black_block__description">
+      This block will contian this....
+    </div>
+    <div class="black_block__cta">
+      <a href="#" class="btn">DEFAULT</a>
+    </div>
+  </div>
+</div>
+<div class="content_section big_block">
+  <div class="vertical-aligment">
+    <div class="big_block__title">
+      Custom Block Placeholder
+    </div>
+    <div class="big_block__description">
+      This block will contian this....
+    </div>
+    <div class="big_block__cta">
+      <a href="#" class="btn">DEFAULT</a>
+    </div>
+  </div>
+  <div class="big_block__background" style="background-image: url(//cdn.shopify.com/s/files/1/0064/0453/8404/files/cherry-blossoms-about-to-open_1400x.jpg?v=1533046131)"></div>
+</div>
+<div class="content_section big_block content_left">
+  <div class="vertical-aligment">
+    <div class="big_block__title">
+      Custom Block Placeholder
+    </div>
+    <div class="big_block__description">
+      This block will contian this....
+    </div>
+    <div class="big_block__cta">
+      <a href="#" class="btn">DEFAULT</a>
+    </div>
+  </div>
+  <div class="big_block__background" style="background-image: url(//cdn.shopify.com/s/files/1/0064/0453/8404/files/cherry-blossoms-about-to-open_1400x.jpg?v=1533046131)"></div>
+</div>
+<div class="content_section big_block content_right">
+  <div class="vertical-aligment">
+    <div class="big_block__title">
+      Custom Block Placeholder
+    </div>
+    <div class="big_block__description">
+      This block will contian this....
+    </div>
+    <div class="big_block__cta">
+      <a href="#" class="btn">DEFAULT</a>
+    </div>
+  </div>
+  <div class="big_block__background" style="background-image: url(//cdn.shopify.com/s/files/1/0064/0453/8404/files/cherry-blossoms-about-to-open_1400x.jpg?v=1533046131)"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Home Slideshow",
+    "settings": [
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header",
+        "default": "Hello world"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "select",
+        "name": "Slide",
+        "settings": [
+          {
+            "type":      "select",
+            "id":        "slide_aligment",
+            "label":     "Aligment",
+            "default":   "left",
+            "info":      "Slide Aligment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "id":    "slide_image",
+            "type":  "image_picker",
+            "label": "Slide Image"
+          },
+          {
+            "id":     "slide_title",
+            "type":   "text",
+            "label":  "Slide Title"
+          },
+          {
+            "id":     "slide_subtitle",
+            "type":   "text",
+            "label":  "Slide SubTitle"
+          },
+          {
+            "id":     "slide_description",
+            "type":   "text",
+            "label":  "Slide Description"
+          },
+          {
+            "id":     "slide_cta_text",
+            "type":   "text",
+            "label":  "Slide CTA Text"
+          },
+          {
+            "id":     "slide_cta_link",
+            "type":   "url",
+            "label":  "Slide CTA Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
